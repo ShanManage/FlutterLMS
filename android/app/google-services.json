@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "111273273169",
+    "firebase_url": "https://emaster-fcbd1.firebaseio.com",
+    "project_id": "emaster-fcbd1",
+    "storage_bucket": "emaster-fcbd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111273273169:android:b0632ffd4c4e67550d1570",
+        "android_client_info": {
+          "package_name": "com.example.LoginSample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111273273169-icqvd1lmdqo9t2u3ijqnciqq0t9p9rgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4YLveNsdLYK3GgFj4fLk0FGeDNaNx3HE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111273273169-icqvd1lmdqo9t2u3ijqnciqq0t9p9rgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

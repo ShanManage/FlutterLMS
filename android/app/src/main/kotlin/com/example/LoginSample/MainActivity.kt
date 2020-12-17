@@ -1,4 +1,4 @@
-package com.example.emaster
+package com.example.LoginSample
 
 import io.flutter.embedding.android.FlutterActivity
 
