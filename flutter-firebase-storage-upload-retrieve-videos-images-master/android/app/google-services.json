@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "817034258039",
+    "project_id": "videoapp-dea5c",
+    "storage_bucket": "videoapp-dea5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817034258039:android:5f7efa6ae91c353c3cc872",
+        "android_client_info": {
+          "package_name": "com.example.firebase_storage_video"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817034258039-j2anj6m8lffj6go17cvaoi4rs2ml56t0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyCh04jSGgOshsXf1WbuQ-jb5RX4XZLjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817034258039-j2anj6m8lffj6go17cvaoi4rs2ml56t0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
