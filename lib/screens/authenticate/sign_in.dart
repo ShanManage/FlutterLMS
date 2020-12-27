@@ -1,4 +1,3 @@
-import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class _SignInState extends State<SignIn> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
-        title: CustomText(text: "Sign In to LMS"),
+        title: Text('sign in for app'),
         actions: [
           FlatButton.icon(
             icon: Icon(Icons.person_add),
