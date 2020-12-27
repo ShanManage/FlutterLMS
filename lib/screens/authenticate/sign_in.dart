@@ -2,10 +2,6 @@ import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
-  final Function toggleView;
-
-  SignIn({this.toggleView});
-
   @override
   _SignInState createState() => _SignInState();
 }
@@ -17,7 +13,6 @@ class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
   String error = '';
-  String grade = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +21,6 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         title: Text('sign in for app'),
-        actions: [
-          FlatButton.icon(
-            icon: Icon(Icons.person_add),
-            label: Text("Sign up"),
-            onPressed: () {
-              widget.toggleView();
-            },
-          )
-        ],
       ),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -57,17 +43,6 @@ class _SignInState extends State<SignIn> {
                     onChanged: (val) {
                       setState(() => password = val);
                     }),
-                SizedBox(height: 20.0),
-                TextFormField(
-                  validator: (val) =>
-                      val.isEmpty ? "Please select grade" : null,
-                  obscureText: true,
-                  onChanged: (val) {
-                    setState(() => grade = val);
-                  },
-                  decoration: InputDecoration(
-                      labelText: 'select', border: OutlineInputBorder()),
-                ),
                 SizedBox(height: 20.0),
                 RaisedButton(
                     color: Colors.pink[400],
