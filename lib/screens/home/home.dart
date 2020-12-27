@@ -1,4 +1,6 @@
 import 'package:LoginSample/models/user.dart';
+import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
+import 'package:LoginSample/screens/shared/globals.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +10,17 @@ class Home extends StatelessWidget {
 
   Home(this._user);
 
+  double blockHeight = Globals.blockHeight;
+  double blockWidth = Globals.blockWidth;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("test home.!"),
+        title: CustomText(
+          text: "LMS",
+          size: blockWidth * 10,
+        ),
         actions: [
           FlatButton.icon(
               icon: Icon(Icons.person),
