@@ -6,7 +6,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  String _grade;
+  // String _grade;
 
   LocalUser _userFromFireBaseUser(User user) {
     return user != null ? LocalUser(uid: user.uid) : null;
