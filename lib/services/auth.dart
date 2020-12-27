@@ -1,10 +1,10 @@
 import 'package:LoginSample/models/user.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final firestoreInstance = FirebaseFirestore.instance;
 
   // String _grade;
 
@@ -54,5 +54,12 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+  Future signIn(String username, String password) {
+    firestoreInstance.collection("users").doc(username).get().then((value) {
+      print(value.exists);
+      // print(value);
+    });
   }
 }
