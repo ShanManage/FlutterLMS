@@ -1,17 +1,18 @@
 import 'package:LoginSample/models/user.dart';
 import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
-import 'package:LoginSample/screens/shared/globals.dart';
+import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
-  final LocalUser _user;
+  final LocalUser user;
 
-  Home(this._user);
+  Home(this.user);
+  double blockWidth = SizeConfig.safeBlockHorizontal;
+  double blockHeight = SizeConfig.safeBlockVertical;
 
-  double blockHeight = Globals.blockHeight;
-  double blockWidth = Globals.blockWidth;
+  AuthService _as = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +31,23 @@ class Home extends StatelessWidget {
               })
         ],
       ),
-      body: _buildBody(),
+      body: StreamBuilder(
+        stream: _as.getGrade(user.uid),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data.exists) {
+            this.user.grade = snapshot.data["grade"];
+            return Container(
+              child: Text(this.user.grade.toString()),
+            );
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
+      ),
+      // _buildBody(),
     );
   }
 
   // ignore: missing_return
-  Container _buildBody() {
-    if (_user.grade == "six") {
-      return Container(
-        child: Text("six"),
-      );
-    } else if (_user.grade == "seven") {
-      return Container(
-        child: Text("seven"),
-      );
-    }
-  }
+
 }

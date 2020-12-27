@@ -16,10 +16,10 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFireBaseUser);
   }
 
-  Future signInWithEmailAndPassword(String email, String password) async {
+  Future signInWithEmailAndPassword(String userID, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+          email: userID + "@gmail.com", password: password);
       User user = result.user;
       // DocumentSnapshot _doc =
       //     await _firestore.collection('users').doc(user.uid).get();
@@ -56,10 +56,7 @@ class AuthService {
     }
   }
 
-  Future signIn(String username, String password) {
-    firestoreInstance.collection("users").doc(username).get().then((value) {
-      print(value.exists);
-      // print(value);
-    });
+  Stream<dynamic> getGrade(String userId) {
+    return firestoreInstance.collection('users').doc(userId).snapshots();
   }
 }
