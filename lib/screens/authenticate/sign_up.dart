@@ -1,3 +1,4 @@
+import 'package:LoginSample/screens/CostomWidgets/CustomButton.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,9 @@ class _SignUpState extends State<SignUp> {
   String password = '';
   String error = '';
   String grade = '';
+
+  // final emailController = TextEditingController();
+  // final passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -97,23 +101,38 @@ class _SignUpState extends State<SignUp> {
                 //   }).toList(),
                 // ),
                 SizedBox(height: 20.0),
-                RaisedButton(
-                    color: Colors.pink[400],
-                    child: Text(
-                      "Sign up",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        dynamic result =
-                            await _auth.registerWithEmailAndPassword(
-                                email, password, grade);
-                        print(result);
-                        // if (result == null) {
-                        //   setState(() => error = 'Please enter valid Email.!');
-                        // }
-                      }
-                    }),
+                CustomButton(
+                  title: "Sign Up",
+                  bgColor: Colors.green[200],
+                  textColor: Colors.black,
+                  callback: () async {
+                    if (_formKey.currentState.validate()) {
+                      dynamic result = await _auth.registerWithEmailAndPassword(
+                          email, password, grade);
+                      print(result);
+                      // if (result == null) {
+                      //   setState(() => error = 'Please enter valid Email.!');
+                      // }
+                    }
+                  },
+                ),
+                // RaisedButton(
+                //     color: Colors.pink[400],
+                //     child: Text(
+                //       "Sign up",
+                //       style: TextStyle(color: Colors.white),
+                //     ),
+                //     onPressed: () async {
+                //       if (_formKey.currentState.validate()) {
+                //         dynamic result =
+                //             await _auth.registerWithEmailAndPassword(
+                //                 email, password, grade);
+                //         print(result);
+                //         // if (result == null) {
+                //         //   setState(() => error = 'Please enter valid Email.!');
+                //         // }
+                //       }
+                //     }),
                 SizedBox(height: 12.0),
                 Text(
                   error,
