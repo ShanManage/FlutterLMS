@@ -2,10 +2,6 @@ import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
-  final Function toggleView;
-
-  SignUp({this.toggleView});
-
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -26,15 +22,6 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         title: Text('sign up for app'),
-        actions: [
-          FlatButton.icon(
-            icon: Icon(Icons.person),
-            label: Text("Sign in"),
-            onPressed: () {
-              widget.toggleView();
-            },
-          )
-        ],
       ),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
