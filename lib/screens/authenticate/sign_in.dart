@@ -1,4 +1,4 @@
-import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
+import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/CostomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CostomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';

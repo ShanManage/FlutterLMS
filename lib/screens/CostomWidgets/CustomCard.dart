@@ -1,4 +1,4 @@
-import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
+import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
