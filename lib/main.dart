@@ -1,4 +1,4 @@
-import 'package:LoginSample/models/user.dart';
+import 'package:LoginSample/models/User.dart';
 import 'package:LoginSample/screens/wrapper.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';

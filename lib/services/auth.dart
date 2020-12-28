@@ -1,4 +1,4 @@
-import 'package:LoginSample/models/user.dart';
+import 'package:LoginSample/models/User.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
