@@ -37,7 +37,8 @@ class AuthService {
           .collection("users")
           .doc(result.user.uid)
           .set({'grade': int.parse(student.registerGrade)});
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
+      return null;
     } catch (e) {
       print(e.toString());
       return null;
