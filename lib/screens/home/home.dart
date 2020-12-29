@@ -1,5 +1,5 @@
 import 'package:LoginSample/models/User.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/admin/adminScreean.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectListScreen.dart';

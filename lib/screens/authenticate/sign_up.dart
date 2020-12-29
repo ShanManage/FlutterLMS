@@ -1,7 +1,7 @@
 import 'package:LoginSample/models/RegisterStudent.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomButton.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomDropDownList.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomFormField.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomDropDownList.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';

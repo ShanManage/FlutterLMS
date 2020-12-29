@@ -1,5 +1,5 @@
 import 'package:LoginSample/models/Subject.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectScreen.dart';
 import 'package:LoginSample/services/databaseService.dart';
@@ -45,8 +45,10 @@ class SubjectListScreen extends StatelessWidget {
             callback: () {
               subject = new Subject();
               subject.subjectName = doc["subject"];
-              subject.PDFList = (doc["pdf"] != null) ? doc["pdf"] : null;
-              subject.VideoList = (doc["video"] != null) ? doc["video"] : null;
+              subject.pdfList = (doc["pdf"] != null) ? doc["pdf"] : null;
+              subject.videoList = (doc["video"] != null) ? doc["video"] : null;
+              subject.audioList = (doc["audio"] != null) ? doc["audio"] : null;
+              subject.lmsList = (doc["lms"] != null) ? doc["lms"] : null;
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -1,6 +1,6 @@
 import 'package:LoginSample/models/UploadDocument.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomDropDownList.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomDropDownList.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/authenticate/sign_up.dart';
 import 'package:flutter/material.dart';
 
