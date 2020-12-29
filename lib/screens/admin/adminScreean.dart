@@ -1,5 +1,6 @@
 import 'package:LoginSample/screens/CostomWidgets/CustomDropDownList.dart';
 import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
+import 'package:LoginSample/screens/authenticate/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class AdminScreen extends StatelessWidget {
@@ -27,8 +28,49 @@ class AdminScreen extends StatelessWidget {
                 child: CustomDropDownList(
                     _subjects, _subjects.first.value, "sbject"))),
         Center(
-            child:
-                Container(padding: EdgeInsets.all(10), child: TextFormField())),
+            child: Container(
+                padding: EdgeInsets.all(10),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), labelText: "title"),
+                ))),
+        Center(
+            child: Container(
+                padding: EdgeInsets.all(10),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), labelText: "thumbnail"),
+                ))),
+        Center(
+            child: Container(
+                padding: EdgeInsets.all(10),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), labelText: "document"),
+                ))),
+        Container(
+          child: Row(children: [
+            RaisedButton(
+                padding: EdgeInsets.all(10),
+                textColor: Colors.white,
+                color: Colors.blue,
+                child: Text('Upload'),
+                onPressed: null),
+            RaisedButton(
+                padding: EdgeInsets.all(10),
+                textColor: Colors.white,
+                color: Colors.blue,
+                child: Text('add new'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUp(),
+                    ),
+                  );
+                }),
+          ]),
+        )
       ]),
     );
   }
