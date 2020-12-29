@@ -1,6 +1,6 @@
 import 'package:LoginSample/models/Subject.dart';
-import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/Audio/AudioListScree.dart';
 import 'package:LoginSample/screens/subjects/LMS/LMSListScreen.dart';

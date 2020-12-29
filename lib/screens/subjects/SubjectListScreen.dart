@@ -1,5 +1,5 @@
 import 'package:LoginSample/models/Subject.dart';
-import 'package:LoginSample/screens/CostomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectScreen.dart';
 import 'package:LoginSample/services/databaseService.dart';

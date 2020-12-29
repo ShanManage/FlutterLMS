@@ -1,4 +1,4 @@
-import 'package:LoginSample/screens/CostomWidgets/CustomButton.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
