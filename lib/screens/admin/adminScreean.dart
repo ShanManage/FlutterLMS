@@ -1,9 +1,12 @@
+import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CostomWidgets/CustomDropDownList.dart';
 import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/authenticate/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class AdminScreen extends StatelessWidget {
+  UploadDocument document = new UploadDocument();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,14 +22,34 @@ class AdminScreen extends StatelessWidget {
         )),
         Center(
             child: Container(
-                padding: EdgeInsets.all(10),
-                child:
-                    CustomDropDownList(_grades, _grades.first.value, "grade"))),
+          padding: EdgeInsets.all(10),
+          child: CustomDropDownList(
+            list: _grades,
+            lable: "grade",
+            type: "ug",
+            ud: document,
+          ),
+        )),
         Center(
             child: Container(
-                padding: EdgeInsets.all(10),
-                child: CustomDropDownList(
-                    _subjects, _subjects.first.value, "sbject"))),
+          padding: EdgeInsets.all(10),
+          child: CustomDropDownList(
+            list: _subjects,
+            lable: "subject",
+            type: "us",
+            ud: document,
+          ),
+        )),
+        Center(
+            child: Container(
+          padding: EdgeInsets.all(10),
+          child: CustomDropDownList(
+            list: _documentType,
+            lable: "type",
+            type: "ut",
+            ud: document,
+          ),
+        )),
         Center(
             child: Container(
                 padding: EdgeInsets.all(10),
@@ -126,6 +149,25 @@ class AdminScreen extends StatelessWidget {
     DropdownMenuItem(
       child: new Text("Budhism"),
       value: "budhism",
+    ),
+  ];
+
+  List<DropdownMenuItem<String>> _documentType = [
+    DropdownMenuItem(
+      child: new Text("pdf"),
+      value: "pdf",
+    ),
+    DropdownMenuItem(
+      child: new Text("video"),
+      value: "video",
+    ),
+    DropdownMenuItem(
+      child: new Text("lms"),
+      value: "lms",
+    ),
+    DropdownMenuItem(
+      child: new Text("audio"),
+      value: "audio",
     ),
   ];
 }
