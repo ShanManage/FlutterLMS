@@ -1,5 +1,6 @@
 import 'package:LoginSample/models/User.dart';
-import 'package:LoginSample/screens/CostomWidgets/CostomText.dart';
+import 'package:LoginSample/screens/CostomWidgets/CustomText.dart';
+import 'package:LoginSample/screens/admin/adminScreean.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectListScreen.dart';
 import 'package:LoginSample/services/auth.dart';
@@ -40,7 +41,9 @@ class Home extends StatelessWidget {
               if (snapshot.hasData && snapshot.data.exists) {
                 this.user.grade = snapshot.data["grade"];
                 return Container(
-                  child: SubjectListScreen(grade: this.user.grade),
+                  child: (this.user.grade == 0)
+                      ? AdminScreen()
+                      : SubjectListScreen(grade: this.user.grade),
                 );
               } else {
                 return CircularProgressIndicator();

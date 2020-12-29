@@ -25,7 +25,7 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
-        title: Text('sign up for app'),
+        title: Text('Create Student'),
       ),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -55,71 +55,16 @@ class _SignUpState extends State<SignUp> {
                       labelText: 'Password', border: OutlineInputBorder()),
                 ),
                 SizedBox(height: 20.0),
-                TextFormField(
-                  validator: (val) =>
-                      val.isEmpty ? "Please select grade" : null,
-                  onChanged: (val) {
-                    setState(() => grade = val);
-                  },
-                  decoration: InputDecoration(
-                      labelText: 'select', border: OutlineInputBorder()),
-                ),
-                // DropdownButton<String>(
-                //   value: grade,
-                //   icon: Icon(Icons.arrow_downward),
-                //   iconSize: 24,
-                //   elevation: 16,
-                //   style: TextStyle(color: Colors.deepPurple),
-                //   underline: Container(
-                //     height: 2,
-                //     color: Colors.deepPurpleAccent,
-                //   ),
-                //   onChanged: (String newValue) {
-                //     setState(() {
-                //       grade = newValue;
-                //     });
-                //   },
-                //   items: <String>['six', 'seven', 'eight', 'nine']
-                //       .map<DropdownMenuItem<String>>((String value) {
-                //     return DropdownMenuItem<String>(
-                //       value: value,
-                //       child: Text(value),
-                //     );
-                //   }).toList(),
-                // ),
-                SizedBox(height: 20.0),
                 CustomButton(
-                  title: "Sign Up",
+                  title: "Create",
                   bgColor: Colors.green[200],
                   textColor: Colors.black,
                   callback: () async {
                     if (_formKey.currentState.validate()) {
-                      dynamic result = await _auth.registerWithEmailAndPassword(
-                          email, password, grade);
-                      print(result);
-                      // if (result == null) {
-                      //   setState(() => error = 'Please enter valid Email.!');
-                      // }
+                      await _auth.registerWithEmailAndPassword(email, password);
                     }
                   },
                 ),
-                // RaisedButton(
-                //     color: Colors.pink[400],
-                //     child: Text(
-                //       "Sign up",
-                //       style: TextStyle(color: Colors.white),
-                //     ),
-                //     onPressed: () async {
-                //       if (_formKey.currentState.validate()) {
-                //         dynamic result =
-                //             await _auth.registerWithEmailAndPassword(
-                //                 email, password, grade);
-                //         print(result);
-                //         // if (result == null) {
-                //         //   setState(() => error = 'Please enter valid Email.!');
-                //         // }
-                //       }
-                //     }),
                 SizedBox(height: 12.0),
                 Text(
                   error,
