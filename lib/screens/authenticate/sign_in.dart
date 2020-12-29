@@ -23,12 +23,8 @@ class _SignInState extends State<SignIn> {
 
   onClickSignIn() async {
     if (_formKey.currentState.validate()) {
-      dynamic result = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
           userNameController.text, passController.text);
-      print(result.toString());
-      // if (result == null) {
-      //   setState(() => error = 'could not sign in with this credential.!');
-      // }
     }
   }
 

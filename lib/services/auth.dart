@@ -1,6 +1,8 @@
+import 'package:LoginSample/models/RegisterStudent.dart';
 import 'package:LoginSample/models/User.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -26,12 +28,17 @@ class AuthService {
     }
   }
 
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      RegisterStudent student, BuildContext context) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      User user = result.user;
-      return _userFromFireBaseUser(user);
+          email: student.userName + "@gmail.com", password: student.password);
+      firestoreInstance
+          .collection("users")
+          .doc(result.user.uid)
+          .set({'grade': int.parse(student.registerGrade)});
+      // Navigator.of(context).pop();
+      return null;
     } catch (e) {
       print(e.toString());
       return null;

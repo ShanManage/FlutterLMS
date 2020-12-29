@@ -1,4 +1,8 @@
+import 'package:LoginSample/models/RegisterStudent.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomDropDownList.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
+import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,19 +12,26 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  double blockHeight = SizeConfig.safeBlockVertical;
+  double blockWidth = SizeConfig.safeBlockHorizontal;
+
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final userNameController = TextEditingController();
+  final passController = TextEditingController();
+  RegisterStudent student = new RegisterStudent();
 
-  String email = '';
-  String password = '';
-  String error = '';
-  String grade = '';
-
-  // final emailController = TextEditingController();
-  // final passController = TextEditingController();
+  onClickSignUp() async {
+    if (_formKey.currentState.validate()) {
+      student.userName = userNameController.text;
+      student.password = passController.text;
+      await _auth.registerWithEmailAndPassword(student, context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    student.registerGrade = _grades.first.value;
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -34,45 +45,70 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               children: [
                 SizedBox(height: 20.0),
-                TextFormField(
-                  validator: (val) => val.isEmpty ? "Please enter email" : null,
-                  onChanged: (val) {
-                    setState(() => email = val);
-                  },
-                  decoration: InputDecoration(
-                      labelText: 'Email', border: OutlineInputBorder()),
+                CustomFormField(
+                  hintText: "username",
+                  isPass: false,
+                  fieldController: userNameController,
+                  prefixIcon: Icons.person,
                 ),
-                SizedBox(height: 20.0),
-                TextFormField(
-                  validator: (val) => val.length < 6
-                      ? "Please enter password 6+ char long"
-                      : null,
-                  obscureText: true,
-                  onChanged: (val) {
-                    setState(() => password = val);
-                  },
-                  decoration: InputDecoration(
-                      labelText: 'Password', border: OutlineInputBorder()),
+                SizedBox(height: blockHeight * 2.5),
+                CustomFormField(
+                  hintText: "password",
+                  isPass: true,
+                  fieldController: passController,
+                  prefixIcon: Icons.lock,
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: blockHeight * 2.5),
+                CustomDropDownList(
+                  list: _grades,
+                  lable: "grade",
+                  type: "rs",
+                  rs: student,
+                ),
+                SizedBox(height: blockHeight * 2.5),
                 CustomButton(
                   title: "Create",
                   bgColor: Colors.green[200],
                   textColor: Colors.black,
                   callback: () async {
-                    if (_formKey.currentState.validate()) {
-                      await _auth.registerWithEmailAndPassword(email, password);
-                    }
+                    onClickSignUp();
                   },
                 ),
-                SizedBox(height: 12.0),
-                Text(
-                  error,
-                  style: TextStyle(color: Colors.red, fontSize: 14.0),
-                )
+                // SizedBox(height: 12.0),
+                // Text(
+                //   error,
+                //   style: TextStyle(color: Colors.red, fontSize: 14.0),
+                // )
               ],
             ),
           )),
     );
   }
+
+  List<DropdownMenuItem<String>> _grades = [
+    DropdownMenuItem(
+      child: new Text("grade 6"),
+      value: "6",
+    ),
+    DropdownMenuItem(
+      child: new Text("grade 7"),
+      value: "7",
+    ),
+    DropdownMenuItem(
+      child: new Text("grade 8"),
+      value: "8",
+    ),
+    DropdownMenuItem(
+      child: new Text("grade 9"),
+      value: "9",
+    ),
+    DropdownMenuItem(
+      child: new Text("grade 10"),
+      value: "10",
+    ),
+    DropdownMenuItem(
+      child: new Text("grade 11"),
+      value: "11",
+    ),
+  ];
 }
