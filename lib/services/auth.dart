@@ -6,8 +6,6 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final firestoreInstance = FirebaseFirestore.instance;
 
-  // String _grade;
-
   LocalUser _userFromFireBaseUser(User user) {
     return user != null ? LocalUser(uid: user.uid) : null;
   }
@@ -21,10 +19,6 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: userID + "@gmail.com", password: password);
       User user = result.user;
-      // DocumentSnapshot _doc =
-      //     await _firestore.collection('users').doc(user.uid).get();
-      // Map<String, dynamic> _data = _doc.data();
-      // _grade = _data["grade"];
       return _userFromFireBaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -37,8 +31,6 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      // _firestore.collection("users").doc(user.uid).set({grade: grade});
-      // _grade = grade;
       return _userFromFireBaseUser(user);
     } catch (e) {
       print(e.toString());

@@ -18,57 +18,68 @@ class AdminScreen extends StatelessWidget {
           ),
         )),
         Center(
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child:
-                    CustomDropDownList(_grades, _grades.first.value, "grade"))),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: CustomDropDownList(_grades, _grades.first.value, "grade"),
+          ),
+        ),
         Center(
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: CustomDropDownList(
-                    _subjects, _subjects.first.value, "sbject"))),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child:
+                CustomDropDownList(_subjects, _subjects.first.value, "sbject"),
+          ),
+        ),
         Center(
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: "title"),
-                ))),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), labelText: "title"),
+            ),
+          ),
+        ),
         Center(
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: "thumbnail"),
-                ))),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), labelText: "thumbnail"),
+            ),
+          ),
+        ),
         Center(
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: "document"),
-                ))),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), labelText: "document"),
+            ),
+          ),
+        ),
         Container(
           child: Row(children: [
             RaisedButton(
-                padding: EdgeInsets.all(10),
-                textColor: Colors.white,
-                color: Colors.blue,
-                child: Text('Upload'),
-                onPressed: null),
+              padding: EdgeInsets.all(10),
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text('Upload'),
+              onPressed: null,
+            ),
             RaisedButton(
-                padding: EdgeInsets.all(10),
-                textColor: Colors.white,
-                color: Colors.blue,
-                child: Text('add new'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignUp(),
-                    ),
-                  );
-                }),
+              padding: EdgeInsets.all(10),
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text('add new'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignUp(),
+                  ),
+                );
+              },
+            ),
           ]),
         )
       ]),

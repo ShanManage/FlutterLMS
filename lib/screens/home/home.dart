@@ -1,4 +1,5 @@
 import 'package:LoginSample/models/User.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/admin/adminScreean.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
@@ -10,7 +11,8 @@ class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
   final LocalUser user;
 
-  Home(this.user);
+  Home({this.user});
+
   double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;
 
@@ -46,7 +48,7 @@ class Home extends StatelessWidget {
                       : SubjectListScreen(grade: this.user.grade),
                 );
               } else {
-                return CircularProgressIndicator();
+                return CustomLoading();
               }
             },
           ),

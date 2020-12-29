@@ -90,6 +90,7 @@ class SubjectScreen extends StatelessWidget {
   }
 
   void onClickVideo(BuildContext context) {
+    Navigator.of(context).pop();
     Navigator.push(
       context,
       MaterialPageRoute(

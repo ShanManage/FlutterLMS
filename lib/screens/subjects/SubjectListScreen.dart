@@ -1,5 +1,6 @@
 import 'package:LoginSample/models/Subject.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectScreen.dart';
 import 'package:LoginSample/services/databaseService.dart';
@@ -26,11 +27,14 @@ class SubjectListScreen extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // TODO : meka hadapan
-          return CircularProgressIndicator();
+          return CustomLoading();
         } else {
-          return ListView(
-            scrollDirection: Axis.vertical,
-            children: loadSubjects(snapshot, context),
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: blockHeight * 2.5),
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: loadSubjects(snapshot, context),
+            ),
           );
         }
       },
