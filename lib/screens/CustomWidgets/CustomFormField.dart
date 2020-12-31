@@ -21,8 +21,8 @@ class CustomFormField extends StatelessWidget {
     return Container(
       child: TextFormField(
         controller: fieldController,
+        obscureText: isPass,
         validator: (isPass == true) ? validatePass : null,
-        maxLines: null,
         keyboardType: (inputType == null) ? TextInputType.text : inputType,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(10.0),

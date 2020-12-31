@@ -2,6 +2,7 @@ import 'package:LoginSample/models/RegisterStudent.dart';
 import 'package:LoginSample/models/User.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AuthService {
@@ -37,8 +38,7 @@ class AuthService {
           .collection("users")
           .doc(result.user.uid)
           .set({'grade': int.parse(student.registerGrade)});
-      // Navigator.of(context).pop();
-      return null;
+      Navigator.pushNamed(context, '/admin');
     } catch (e) {
       print(e.toString());
       return null;

@@ -1,4 +1,5 @@
 import 'package:LoginSample/models/User.dart';
+import 'package:LoginSample/screens/admin/adminScreean.dart';
 import 'package:LoginSample/screens/wrapper.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         home: Wrapper(),
         debugShowCheckedModeBanner: false,
+        routes: {
+          '/admin': (context) => AdminScreen(),
+        },
       ),
     );
   }

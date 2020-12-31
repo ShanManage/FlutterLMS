@@ -32,10 +32,11 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(0, 5.5, 0, 0),
-          labelStyle: TextStyle(),
-          labelText: this.widget.lable,
-          border: OutlineInputBorder()),
+        contentPadding: EdgeInsets.fromLTRB(0, 5.5, 0, 0),
+        labelStyle: TextStyle(),
+        labelText: this.widget.lable,
+        border: OutlineInputBorder(),
+      ),
       items: this.widget.list,
       value: getType(),
       onChanged: (value) {
