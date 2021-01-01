@@ -3,12 +3,14 @@ import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomDropDownList.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/databaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
+import 'package:path/path.dart' as path;
 
 class AddDocumentScreen extends StatefulWidget {
   @override
@@ -24,106 +26,77 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
   final titleController = TextEditingController();
   DatabaseService dbService = DatabaseService();
 
-  String fileType = '';
   File file;
-  String fileName = '';
-  String operationText = '';
-  bool isUploaded = true;
-  // String result = '';
+  String fileName = "", uploadath = "";
+  bool isUpload = true;
+  bool isError = false;
 
-  onClickUpload() {
+  onClickUpload() async {
+    setState(() {
+      isUpload = false;
+    });
     document.title = titleController.text;
-    document.docURL = "asdasd";
     document.thumbnailURL = "thumnail urk";
 
-    try {
-      dbService.insertDocument(document);
-    } catch (e) {
-      print("Add doc screen" + e.toString());
+    if (document.docGrade != null &&
+        document.docSubject != null &&
+        document.docType != null &&
+        document.title != null) {
+      if (file != null) {
+        document.docURL = await dbService.uploadFile(file, fileName, uploadath);
+      } else {
+        // show error message to upload file befor send data
+      }
+      if (document.docURL != null) {
+        try {
+          dbService.insertDocument(document);
+          isError = false;
+          print("DOCUMENT URL : " + document.docURL);
+        } catch (e) {
+          isError = true;
+          print("ERROR ON ADD DOCUMENT SCREEN : " + e.toString());
+        }
+        if (isError = false) {
+          document = null;
+        }
+        setState(() {
+          titleController.text = '';
+          isUpload = true;
+        });
+      }
     }
   }
 
   Future pickFile() async {
-    // try {
-    //   result = await FilePicker.platform.pickFiles(type: FileType.any);
-    //   if (result != null) {
-    //     PlatformFile pFile = result.files.first;
+    if (document.docGrade != null &&
+        document.docSubject != null &&
+        document.docType != null &&
+        titleController.text != null) {
+      try {
+        if (document.docType == "audio") {
+          file = await FilePicker.getFile(type: FileType.AUDIO);
+        }
 
-    //     print(pFile.name);
-    //     print(pFile.bytes);
-    //     print(pFile.size);
-    //     print(pFile.extension);
-    //     print(pFile.path);
+        if (document.docType == "video")
+          file = await FilePicker.getFile(type: FileType.VIDEO);
 
-    //     // dbService.uploadFile(file, filename, filePath);
-    //   } else {
-    //     // User canceled the picker
-    //   }
+        if (document.docType == "pdf" || document.docType == "lms")
+          file = await FilePicker.getFile(
+              type: FileType.CUSTOM, fileExtension: 'pdf');
 
-    // if (fileType == 'image') {
-    //   file = await FilePicker.getFile(type: FileType.IMAGE);
-    //   setState(() {
-    //     fileName = p.basename(file.path);
-    //   });
-    //   print(fileName);
-    //   _uploadFile(file, fileName);
-    // }
-    // if (fileType == 'audio') {
-    //   file = await FilePicker.getFile(type: FileType.AUDIO);
-    //   fileName = p.basename(file.path);
-    //   setState(() {
-    //     fileName = p.basename(file.path);
-    //   });
-    //   print(fileName);
-    //   _uploadFile(file, fileName);
-    // }
-    // if (fileType == 'video') {
-    //   file = await FilePicker.getFile(type: FileType.VIDEO);
-    //   fileName = p.basename(file.path);
-    //   setState(() {
-    //     fileName = p.basename(file.path);
-    //   });
-    //   print(fileName);
-    //   _uploadFile(file, fileName);
-    // }
-    // if (fileType == 'pdf') {
-    //   file = await FilePicker.getFile(
-    //       type: FileType.CUSTOM, fileExtension: 'pdf');
-    //   fileName = p.basename(file.path);
-    //   setState(() {
-    //     fileName = p.basename(file.path);
-    //   });
-    //   print(fileName);
-    //   _uploadFile(file, fileName);
-    // }
-    // if (fileType == 'others') {
-    //   file = await FilePicker.getFile(type: FileType.ANY);
-    //   fileName = p.basename(file.path);
-    //   setState(() {
-    //     fileName = p.basename(file.path);
-    //   });
-    //   print(fileName);
-    //   _uploadFile(file, fileName);
-    // }
-
-    // } on PlatformException catch (e) {
-    //   showDialog(
-    //       context: context,
-    //       builder: (BuildContext context) {
-    //         return AlertDialog(
-    //           title: Text('Sorry...'),
-    //           content: Text('Unsupported exception: $e'),
-    //           actions: <Widget>[
-    //             FlatButton(
-    //               child: Text('OK'),
-    //               onPressed: () {
-    //                 Navigator.of(context).pop();
-    //               },
-    //             )
-    //           ],
-    //         );
-    //       });
-    // }
+        fileName = path.basename(file.path);
+        print("FILENAME : " + fileName);
+        uploadath = document.docGrade.toString() +
+            "/" +
+            document.docSubject.toString() +
+            "/" +
+            document.docType.toString() +
+            "/" +
+            fileName;
+      } on PlatformException catch (e) {
+        print("ERROR WHILE PICKING DOCUMENT : " + e.toString());
+      }
+    }
   }
 
   List<DropdownMenuItem<String>> _grades = [
@@ -268,14 +241,16 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
             },
           ),
           SizedBox(height: 20.0),
-          CustomButton(
-            title: "Upload",
-            bgColor: Colors.blue[800],
-            textColor: Colors.white,
-            callback: () {
-              onClickUpload();
-            },
-          )
+          (isUpload == true)
+              ? CustomButton(
+                  title: "Upload",
+                  bgColor: Colors.blue[800],
+                  textColor: Colors.white,
+                  callback: () {
+                    onClickUpload();
+                  },
+                )
+              : CustomLoading(),
         ]),
       ),
     );

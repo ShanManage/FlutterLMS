@@ -26,18 +26,21 @@ class DatabaseService {
         ])
       }, SetOptions(merge: true));
     } catch (e) {
-      print("database service" + e.toString());
+      print("DATABSE SERVICE : " + e.toString());
     }
   }
 
   Future<String> uploadFile(File file, String filename, String filePath) async {
     StorageReference storageReference = storageInstance.ref();
-    StorageUploadTask uploadTask =
-        storageReference.child(filePath).putFile(file);
+    StorageUploadTask uploadTask;
+    try {
+      uploadTask = storageReference.child(filePath).putFile(file);
+    } catch (e) {
+      print("ERROR WHILE UPLOADING DOCUMENT : " + e.toString());
+    }
 
     StorageTaskSnapshot downloadUrl = await uploadTask.onComplete;
     String url = await downloadUrl.ref.getDownloadURL();
-    print("URL : $url");
     return url;
   }
 }
