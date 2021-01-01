@@ -1,4 +1,5 @@
 import 'package:LoginSample/models/Subject.dart';
+import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
@@ -18,6 +19,7 @@ class SubjectScreen extends StatelessWidget {
   Subject subject = new Subject();
   SubjectScreen({@required this.subject});
 
+  UploadDocument ud = new UploadDocument();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -98,11 +100,12 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.pdfList,
           appBarTitle: "PDF",
+          ud: this.ud,
           callback: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PDFViewScreen(),
+                builder: (context) => PDFViewScreen(ud: this.ud),
               ),
             );
           },
