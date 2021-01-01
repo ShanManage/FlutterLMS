@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   String title;
   final VoidCallback callback;
+  double height;
 
-  CustomCard({
-    @required this.title,
-    @required this.callback,
-  });
+  CustomCard({@required this.title, @required this.callback, this.height});
 
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
@@ -20,6 +18,7 @@ class CustomCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             vertical: blockHeight * 1.5, horizontal: blockWidth * 10),
         width: double.infinity,
+        height: (this.height == null) ? blockHeight * 10 : height,
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: blockWidth * 7.5,
@@ -31,14 +30,11 @@ class CustomCard extends StatelessWidget {
               Radius.circular(15.0),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              CustomText(
-                text: title,
-                color: Colors.black,
-              ),
-            ],
+          child: Center(
+            child: CustomText(
+              text: title,
+              color: Colors.black,
+            ),
           ),
         ),
       ),

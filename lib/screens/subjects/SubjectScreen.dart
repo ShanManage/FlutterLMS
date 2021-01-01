@@ -19,7 +19,10 @@ class SubjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(subject.subjectName);
+    print(this.subject.pdfList);
+    print(this.subject.audioList);
+    print(this.subject.lmsList);
+    print(this.subject.videoList);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -38,42 +41,53 @@ class SubjectScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            child: Column(
-              children: [
-                (this.subject.pdfList.isNotEmpty)
-                    ? CustomCard(
-                        title: "PDF",
-                        callback: () {
-                          onClickPDF(context);
-                        },
-                      )
-                    : Container(),
-                (this.subject.videoList.isNotEmpty)
-                    ? CustomCard(
-                        title: "Video",
-                        callback: () {
-                          onClickVideo(context);
-                        },
-                      )
-                    : Container(),
-                (this.subject.audioList.isNotEmpty)
-                    ? CustomCard(
-                        title: "Audio",
-                        callback: () {
-                          onClickAudio(context);
-                        },
-                      )
-                    : Container(),
-                (this.subject.lmsList.isNotEmpty)
-                    ? CustomCard(
-                        title: "LMS",
-                        callback: () {
-                          onClickLMS(context);
-                        },
-                      )
-                    : Container(),
-              ],
-            ),
+            child: (this.subject.pdfList.isEmpty &&
+                    this.subject.audioList.isEmpty &&
+                    this.subject.lmsList.isEmpty &&
+                    this.subject.videoList.isEmpty)
+                ? Container(
+                    child: CustomCard(
+                      callback: () {},
+                      title: "No subjects",
+                      height: blockHeight * 30,
+                    ),
+                  )
+                : Column(
+                    children: [
+                      (this.subject.pdfList.isNotEmpty)
+                          ? CustomCard(
+                              title: "PDF",
+                              callback: () {
+                                onClickPDF(context);
+                              },
+                            )
+                          : Container(),
+                      (this.subject.videoList.isNotEmpty)
+                          ? CustomCard(
+                              title: "Video",
+                              callback: () {
+                                onClickVideo(context);
+                              },
+                            )
+                          : Container(),
+                      (this.subject.audioList.isNotEmpty)
+                          ? CustomCard(
+                              title: "Audio",
+                              callback: () {
+                                onClickAudio(context);
+                              },
+                            )
+                          : Container(),
+                      (this.subject.lmsList.isNotEmpty)
+                          ? CustomCard(
+                              title: "LMS",
+                              callback: () {
+                                onClickLMS(context);
+                              },
+                            )
+                          : Container(),
+                    ],
+                  ),
           ),
         ),
       ),

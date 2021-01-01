@@ -1,5 +1,6 @@
 import 'package:LoginSample/screens/admin/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/AddUserScreen.dart';
+import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -9,6 +10,9 @@ class AdminScreen extends StatefulWidget {
 
 class _AdminScreenState extends State<AdminScreen>
     with SingleTickerProviderStateMixin {
+  double blockHeight = SizeConfig.safeBlockVertical;
+  double blockWidth = SizeConfig.safeBlockHorizontal;
+
   TabController _controller;
 
   @override
@@ -28,6 +32,9 @@ class _AdminScreenState extends State<AdminScreen>
               height: 50.0,
               color: Colors.brown[300],
               child: TabBar(
+                isScrollable: true,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelPadding: EdgeInsets.symmetric(horizontal: blockHeight * 8),
                 controller: _controller,
                 tabs: [
                   Tab(text: "Add User"),
