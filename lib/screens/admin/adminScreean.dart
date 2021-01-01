@@ -25,10 +25,12 @@ class _AdminScreenState extends State<AdminScreen>
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        color: Colors.brown[100],
         child: Column(
           children: [
             Container(
-              color: Colors.black,
+              height: 50.0,
+              color: Colors.brown[300],
               child: TabBar(
                 isScrollable: true,
                 indicatorSize: TabBarIndicatorSize.label,
