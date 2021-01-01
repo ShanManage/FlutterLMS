@@ -16,7 +16,6 @@ class CustomButton extends StatelessWidget {
       this.width,
       this.fontSize});
 
-  // double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;
 
   @override

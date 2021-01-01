@@ -46,6 +46,7 @@ class SubjectListScreen extends StatelessWidget {
         .map(
           (doc) => CustomCard(
             title: doc["subject"],
+            height: blockHeight * 12,
             callback: () {
               subject = new Subject();
               subject.subjectName = doc["subject"];

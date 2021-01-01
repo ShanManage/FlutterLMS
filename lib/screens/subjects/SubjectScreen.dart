@@ -2,10 +2,11 @@ import 'package:LoginSample/models/Subject.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
-import 'package:LoginSample/screens/subjects/Audio/AudioListScree.dart';
-import 'package:LoginSample/screens/subjects/LMS/LMSListScreen.dart';
-import 'package:LoginSample/screens/subjects/PDF/PDFLIstScreen.dart';
-import 'package:LoginSample/screens/subjects/Video/VideoListScreen.dart';
+import 'package:LoginSample/screens/subjects/Audio/AudioViewScreen.dart';
+import 'package:LoginSample/screens/subjects/DocumentListScreen.dart';
+import 'package:LoginSample/screens/subjects/LMS/LMSViewScreen.dart';
+import 'package:LoginSample/screens/subjects/PDF/PDFViewScreen.dart';
+import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +20,6 @@ class SubjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.subject.pdfList);
-    print(this.subject.audioList);
-    print(this.subject.lmsList);
-    print(this.subject.videoList);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -98,7 +95,18 @@ class SubjectScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PDFListScreen(pdfList: this.subject.pdfList),
+        builder: (context) => DocumentListScreen(
+          docList: this.subject.pdfList,
+          appBarTitle: "PDF",
+          callback: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PDFViewScreen(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -108,8 +116,18 @@ class SubjectScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            VideoListScreen(videoList: this.subject.videoList),
+        builder: (context) => DocumentListScreen(
+          docList: this.subject.videoList,
+          appBarTitle: "Video",
+          callback: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VideoViewScreen(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -118,7 +136,18 @@ class SubjectScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LMSListScreen(lmsList: this.subject.lmsList),
+        builder: (context) => DocumentListScreen(
+          docList: this.subject.lmsList,
+          appBarTitle: "LMS",
+          callback: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LMSViewScreen(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -127,8 +156,18 @@ class SubjectScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            AudioListScreen(audioList: this.subject.audioList),
+        builder: (context) => DocumentListScreen(
+          docList: this.subject.audioList,
+          appBarTitle: "Audio",
+          callback: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AudioViewScreen(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

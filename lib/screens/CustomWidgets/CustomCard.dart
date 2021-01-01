@@ -18,7 +18,7 @@ class CustomCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             vertical: blockHeight * 1.5, horizontal: blockWidth * 10),
         width: double.infinity,
-        height: (this.height == null) ? blockHeight * 10 : height,
+        height: (this.height == null) ? blockHeight * 12 : height,
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: blockWidth * 7.5,
@@ -34,6 +34,7 @@ class CustomCard extends StatelessWidget {
             child: CustomText(
               text: title,
               color: Colors.black,
+              size: blockHeight * 4,
             ),
           ),
         ),

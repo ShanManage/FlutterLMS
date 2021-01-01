@@ -243,7 +243,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           SizedBox(height: 20.0),
           (isUpload == true)
               ? CustomButton(
-                  title: "Upload",
+                  title: "Upload Document",
                   bgColor: Colors.blue[800],
                   textColor: Colors.white,
                   callback: () {

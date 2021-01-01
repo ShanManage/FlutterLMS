@@ -21,7 +21,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
   final passController = TextEditingController();
   RegisterStudent student = new RegisterStudent();
 
-  onClickSignUp() async {
+  onClickAddUser() async {
     if (_formKey.currentState.validate()) {
       student.userName = userNameController.text;
       student.password = passController.text;
@@ -64,11 +64,11 @@ class _AddUserScreenState extends State<AddUserScreen> {
             ),
             SizedBox(height: blockHeight * 2.5),
             CustomButton(
-              title: "Create",
+              title: "Create User",
               bgColor: Colors.green[200],
               textColor: Colors.black,
               callback: () async {
-                onClickSignUp();
+                onClickAddUser();
               },
             ),
           ],
