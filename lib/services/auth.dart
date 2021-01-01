@@ -38,7 +38,7 @@ class AuthService {
           .collection("users")
           .doc(result.user.uid)
           .set({'grade': int.parse(student.registerGrade)});
-      Navigator.pushNamed(context, '/admin');
+      // Navigator.pushNamed(context, '/admin');
     } catch (e) {
       print(e.toString());
       return null;

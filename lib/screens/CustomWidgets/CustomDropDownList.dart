@@ -8,14 +8,22 @@ class CustomDropDownList extends StatefulWidget {
   UploadDocument ud;
   String lable;
   String type;
-  CustomDropDownList(
-      {@required this.list, this.rs, this.ud, this.lable, this.type});
+  Color fillColor;
+  CustomDropDownList({
+    @required this.list,
+    this.rs,
+    this.ud,
+    this.lable,
+    this.type,
+    this.fillColor,
+  });
 
   @override
   _CustomDropDownListState createState() => _CustomDropDownListState();
 }
 
 class _CustomDropDownListState extends State<CustomDropDownList> {
+  // ignore: missing_return
   String getType() {
     if (this.widget.type == "rs") {
       return this.widget.rs.registerGrade;
@@ -34,8 +42,28 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(0, 5.5, 0, 0),
         labelStyle: TextStyle(),
-        labelText: this.widget.lable,
-        border: OutlineInputBorder(),
+        // labelText: this.widget.lable,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        filled: true,
+        fillColor: (this.widget.fillColor == null)
+            ? Colors.green[50]
+            : this.widget.fillColor,
+        border: InputBorder.none,
       ),
       items: this.widget.list,
       value: getType(),

@@ -10,8 +10,6 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double blockHeight = SizeConfig.safeBlockVertical;
-    double blockWidth = SizeConfig.safeBlockHorizontal;
     final user = Provider.of<LocalUser>(context);
 
     if (user == null) {

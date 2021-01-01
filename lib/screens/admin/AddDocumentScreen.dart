@@ -46,6 +46,7 @@ class AddDocumentScreen extends StatelessWidget {
               lable: "grade",
               type: "ug",
               ud: document,
+              fillColor: Colors.brown[50],
             ),
           )),
           Center(
@@ -56,6 +57,7 @@ class AddDocumentScreen extends StatelessWidget {
               lable: "subject",
               type: "us",
               ud: document,
+              fillColor: Colors.brown[50],
             ),
           )),
           Center(
@@ -66,6 +68,7 @@ class AddDocumentScreen extends StatelessWidget {
               lable: "type",
               type: "ut",
               ud: document,
+              fillColor: Colors.brown[50],
             ),
           )),
           CustomFormField(

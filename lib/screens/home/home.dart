@@ -23,6 +23,7 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.brown,
           title: CustomText(
             text: "LMS",
             size: blockWidth * 10,

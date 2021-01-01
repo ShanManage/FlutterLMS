@@ -34,7 +34,7 @@ class _SignInState extends State<SignIn> {
       child: Scaffold(
         backgroundColor: Colors.brown[100],
         appBar: AppBar(
-          backgroundColor: Colors.brown[400],
+          backgroundColor: Colors.brown,
           title: CustomText(text: "Sign In for LMS"),
         ),
         body: SingleChildScrollView(
