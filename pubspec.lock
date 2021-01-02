@@ -92,7 +92,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.3"
-<<<<<<< HEAD
   csslib:
     dependency: transitive
     description:
@@ -100,7 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.2"
-=======
   convert:
     dependency: transitive
     description:
@@ -115,7 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
->>>>>>> 3d96ebf13bfdc1f5063d78dbaeb599353597ffac
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -243,7 +240,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   html:
     dependency: transitive
     description:
@@ -251,7 +247,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.0+4"
-=======
   http:
     dependency: transitive
     description:
@@ -259,7 +254,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.2"
->>>>>>> 3d96ebf13bfdc1f5063d78dbaeb599353597ffac
   http_parser:
     dependency: transitive
     description:
@@ -267,7 +261,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
-<<<<<<< HEAD
   import_js_library:
     dependency: transitive
     description:
@@ -275,7 +268,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-=======
   image:
     dependency: transitive
     description:
@@ -283,7 +275,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.19"
->>>>>>> 3d96ebf13bfdc1f5063d78dbaeb599353597ffac
   intl:
     dependency: transitive
     description:
@@ -520,7 +511,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
-<<<<<<< HEAD
   video_player:
     dependency: transitive
     description:
@@ -566,7 +556,6 @@ packages:
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
   flutter: ">=1.20.0 <2.0.0"
-=======
   win32:
     dependency: transitive
     description:
@@ -591,4 +580,3 @@ sdks:
 sdks:
   dart: ">=2.10.2 <2.11.0"
   flutter: ">=1.22.2 <2.0.0"
->>>>>>> 3d96ebf13bfdc1f5063d78dbaeb599353597ffac
