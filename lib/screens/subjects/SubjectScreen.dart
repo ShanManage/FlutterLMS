@@ -1,4 +1,5 @@
 import 'package:LoginSample/models/Subject.dart';
+import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
@@ -10,6 +11,7 @@ import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SubjectScreen extends StatelessWidget {
   double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;
@@ -17,6 +19,8 @@ class SubjectScreen extends StatelessWidget {
 
   Subject subject = new Subject();
   SubjectScreen({@required this.subject});
+
+  UploadDocument ud = new UploadDocument();
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +123,12 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.videoList,
           appBarTitle: "Video",
+          ud: this.ud,
           callback: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => VideoViewScreen(),
+                builder: (context) => VideoViewScreen(ud: this.ud),
               ),
             );
           },
@@ -159,11 +164,12 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.audioList,
           appBarTitle: "Audio",
+          ud: this.ud,
           callback: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AudioViewScreen(),
+                builder: (context) => VideoViewScreen(ud: this.ud),
               ),
             );
           },
