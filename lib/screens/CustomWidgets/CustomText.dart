@@ -21,6 +21,7 @@ class CustomText extends StatelessWidget {
         color: (color != null) ? color : Colors.white,
       ),
       softWrap: true,
+      maxLines: null,
     );
   }
 }

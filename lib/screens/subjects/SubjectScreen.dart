@@ -5,7 +5,6 @@ import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/Audio/AudioViewScreen.dart';
 import 'package:LoginSample/screens/subjects/DocumentListScreen.dart';
-import 'package:LoginSample/screens/subjects/LMS/LMSViewScreen.dart';
 import 'package:LoginSample/screens/subjects/PDF/PDFViewScreen.dart';
 import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';
 import 'package:LoginSample/services/auth.dart';
@@ -21,7 +20,6 @@ class SubjectScreen extends StatelessWidget {
   SubjectScreen({@required this.subject});
 
   UploadDocument ud = new UploadDocument();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -102,11 +100,12 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.pdfList,
           appBarTitle: "PDF",
+          ud: this.ud,
           callback: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PDFViewScreen(),
+                builder: (context) => PDFViewScreen(ud: this.ud),
               ),
             );
           },
@@ -144,11 +143,12 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.lmsList,
           appBarTitle: "LMS",
+          ud: this.ud,
           callback: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => LMSViewScreen(),
+                builder: (context) => PDFViewScreen(ud: this.ud),
               ),
             );
           },
