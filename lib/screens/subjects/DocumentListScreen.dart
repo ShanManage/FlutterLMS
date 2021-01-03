@@ -2,7 +2,6 @@ import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
-// import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,6 @@ class DocumentListScreen extends StatefulWidget {
   String appBarTitle;
   VoidCallback callback;
   UploadDocument ud;
-
   DocumentListScreen(
       {@required this.docList,
       @required this.appBarTitle,
@@ -65,6 +63,7 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
             callback: () {
               this.widget.ud.docURL = doc["url"];
               this.widget.ud.title = doc["title"];
+              this.widget.ud.thumbnailURL = doc["thumbnail"];
               this.widget.callback();
             }))
         .toList();
