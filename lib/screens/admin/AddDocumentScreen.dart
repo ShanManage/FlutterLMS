@@ -26,27 +26,40 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
   final titleController = TextEditingController();
   DatabaseService dbService = DatabaseService();
 
-  File file;
-  String fileName = "", uploadath = "";
+  File docfile, imagefile;
+  String docfileName = "",
+      imagefileName = "",
+      docUploadpath = "",
+      imageUploadpath = "";
   bool isUpload = true;
   bool isError = false;
+  bool isDocument = true;
 
   onClickUpload() async {
     setState(() {
       isUpload = false;
     });
     document.title = titleController.text;
-    document.thumbnailURL = "thumnail urk";
+    // document.thumbnailURL = "thumnail urk";
 
     if (document.docGrade != null &&
         document.docSubject != null &&
         document.docType != null &&
         document.title != null) {
-      if (file != null) {
-        document.docURL = await dbService.uploadFile(file, fileName, uploadath);
+      if (imagefile != null) {
+        document.thumbnailURL = await dbService.uploadFile(
+            imagefile, imagefileName, imageUploadpath);
       } else {
-        // show error message to upload file befor send data
+        document.thumbnailURL = null;
       }
+
+      if (docfile != null) {
+        document.docURL =
+            await dbService.uploadFile(docfile, docfileName, docUploadpath);
+      }
+      // else {
+      //   // show error message to upload file befor send data
+      // }
       if (document.docURL != null) {
         try {
           dbService.insertDocument(document);
@@ -67,32 +80,48 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
     }
   }
 
-  Future pickFile() async {
+  Future pickFile(bool isDocument) async {
     if (document.docGrade != null &&
         document.docSubject != null &&
         document.docType != null &&
         titleController.text != null) {
       try {
-        if (document.docType == "audio") {
-          file = await FilePicker.getFile(type: FileType.AUDIO);
+        if (isDocument) {
+          if (document.docType == "audio") {
+            docfile = await FilePicker.getFile(type: FileType.AUDIO);
+          }
+
+          if (document.docType == "video")
+            docfile = await FilePicker.getFile(type: FileType.VIDEO);
+
+          if (document.docType == "pdf" || document.docType == "lms")
+            docfile = await FilePicker.getFile(
+                type: FileType.CUSTOM, fileExtension: 'pdf');
+
+          docfileName = path.basename(docfile.path);
+          print("FILENAME : " + docfileName);
+          docUploadpath = document.docGrade.toString() +
+              "/" +
+              document.docSubject.toString() +
+              "/" +
+              document.docType.toString() +
+              "/" +
+              document..toString() +
+              "/" +
+              docfileName;
+        } else {
+          imagefile = await FilePicker.getFile(type: FileType.IMAGE);
+
+          imagefileName = path.basename(imagefile.path);
+          print("FILENAME : " + docfileName);
+          imageUploadpath = document.docGrade.toString() +
+              "/" +
+              document.docSubject.toString() +
+              "/" +
+              document.docType.toString() +
+              "/" +
+              imagefileName;
         }
-
-        if (document.docType == "video")
-          file = await FilePicker.getFile(type: FileType.VIDEO);
-
-        if (document.docType == "pdf" || document.docType == "lms")
-          file = await FilePicker.getFile(
-              type: FileType.CUSTOM, fileExtension: 'pdf');
-
-        fileName = path.basename(file.path);
-        print("FILENAME : " + fileName);
-        uploadath = document.docGrade.toString() +
-            "/" +
-            document.docSubject.toString() +
-            "/" +
-            document.docType.toString() +
-            "/" +
-            fileName;
       } on PlatformException catch (e) {
         print("ERROR WHILE PICKING DOCUMENT : " + e.toString());
       }
@@ -229,16 +258,31 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
             fillColor: Colors.blue[100],
           ),
           SizedBox(height: 20.0),
-          CustomButton(
-            title: "Pick a file",
-            bgColor: Colors.green[800],
-            textColor: Colors.white,
-            width: blockWidth * 40,
-            height: blockHeight * 5,
-            fontSize: blockHeight * 2.5,
-            callback: () {
-              pickFile();
-            },
+          Row(
+            children: [
+              CustomButton(
+                title: "Pick a document",
+                bgColor: Colors.green[800],
+                textColor: Colors.white,
+                width: blockWidth * 46,
+                height: blockHeight * 5,
+                fontSize: blockHeight * 2.5,
+                callback: () {
+                  pickFile(isDocument);
+                },
+              ),
+              CustomButton(
+                title: "Pick a thumbnail",
+                bgColor: Colors.green[800],
+                textColor: Colors.white,
+                width: blockWidth * 46,
+                height: blockHeight * 5,
+                fontSize: blockHeight * 2.5,
+                callback: () {
+                  pickFile(!isDocument);
+                },
+              ),
+            ],
           ),
           SizedBox(height: 20.0),
           (isUpload == true)
