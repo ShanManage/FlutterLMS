@@ -15,28 +15,53 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        padding: EdgeInsets.symmetric(
-            vertical: blockHeight * 1.5, horizontal: blockWidth * 10),
-        width: double.infinity,
-        height: (this.height == null) ? blockHeight * 12 : height,
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: blockWidth * 7.5,
-            vertical: blockWidth * 4,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.lightGreen[400].withOpacity(0.7),
-            borderRadius: BorderRadius.all(
-              Radius.circular(15.0),
+        // margin: EdgeInsets.symmetric(vertical: blockHeight * 1),
+        color: Colors.grey[400],
+        child: Column(
+          children: [
+            // Container(
+            //   padding: EdgeInsets.symmetric(
+            //       vertical: blockHeight * 1.5, horizontal: blockWidth * 10),
+            //   width: double.infinity,
+            //   height: (this.height == null) ? blockHeight * 12 : height,
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: blockWidth * 7.5,
+            //       vertical: blockWidth * 4,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       color: Colors.lightGreen[400].withOpacity(0.7),
+            //       borderRadius: BorderRadius.all(
+            //         Radius.circular(15.0),
+            //       ),
+            //     ),
+            //     child: Center(
+            //       child: CustomText(
+            //         text: title,
+            //         color: Colors.black,
+            //         size: blockHeight * 4,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            Image.asset(
+              'assets/music.png',
+              // width: blcok,
+              height: blockHeight * 25,
+              fit: BoxFit.fitWidth,
             ),
-          ),
-          child: Center(
-            child: CustomText(
-              text: title,
-              color: Colors.black,
-              size: blockHeight * 4,
-            ),
-          ),
+            Container(
+              height: blockHeight * 5,
+              alignment: Alignment.center,
+              width: double.infinity,
+              color: Colors.white,
+              child: CustomText(
+                text: title,
+                color: Colors.black,
+                size: blockHeight * 3,
+              ),
+            )
+          ],
         ),
       ),
       onTap: () {
