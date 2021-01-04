@@ -72,38 +72,31 @@ class _VideoViewScreen extends State<VideoViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // title: widget.title,
-      theme: ThemeData.light().copyWith(
-        platform: TargetPlatform.iOS,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("video"),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("video"),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: _chewieController != null &&
-                        _chewieController
-                            .videoPlayerController.value.initialized
-                    ? Chewie(
-                        controller: _chewieController,
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircularProgressIndicator(),
-                          SizedBox(height: 20),
-                          Text('Loading'),
-                        ],
-                      ),
-              ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Center(
+              child: _chewieController != null &&
+                      _chewieController.videoPlayerController.value.initialized
+                  ? Chewie(
+                      controller: _chewieController,
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 20),
+                        Text('Loading'),
+                      ],
+                    ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

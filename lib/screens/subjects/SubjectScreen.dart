@@ -3,7 +3,6 @@ import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
-import 'package:LoginSample/screens/subjects/Audio/AudioViewScreen.dart';
 import 'package:LoginSample/screens/subjects/DocumentListScreen.dart';
 import 'package:LoginSample/screens/subjects/PDF/PDFViewScreen.dart';
 import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';

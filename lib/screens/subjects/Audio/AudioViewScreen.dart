@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-// ignore: must_be_immutable
 class AudioViewScreen extends StatefulWidget {
   UploadDocument ud;
   bool isPlay = false;

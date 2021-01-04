@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.brown,
           title: CustomText(
             text: "LMS",
-            size: blockWidth * 10,
+            size: blockWidth * 8,
           ),
           actions: [
             FlatButton.icon(
