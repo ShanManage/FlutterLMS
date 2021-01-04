@@ -106,7 +106,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
               "/" +
               document.docType.toString() +
               "/" +
-              document..toString() +
+              document.title.toString() +
               "/" +
               docfileName;
         } else {
@@ -119,6 +119,8 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
               document.docSubject.toString() +
               "/" +
               document.docType.toString() +
+              "/" +
+              document.title.toString() +
               "/" +
               imagefileName;
         }
