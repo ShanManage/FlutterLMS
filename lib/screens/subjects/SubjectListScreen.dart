@@ -1,5 +1,5 @@
 import 'package:LoginSample/models/Subject.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomSubjectCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectScreen.dart';
@@ -30,7 +30,7 @@ class SubjectListScreen extends StatelessWidget {
           return CustomLoading();
         } else {
           return Container(
-            padding: EdgeInsets.symmetric(vertical: blockHeight * 2.5),
+            padding: EdgeInsets.symmetric(vertical: blockHeight * 2),
             child: ListView(
               scrollDirection: Axis.vertical,
               children: loadSubjects(snapshot, context),
@@ -44,9 +44,9 @@ class SubjectListScreen extends StatelessWidget {
   loadSubjects(AsyncSnapshot<QuerySnapshot> snapshot, BuildContext context) {
     return snapshot.data.docs
         .map(
-          (doc) => CustomCard(
+          (doc) => CustomSubjectCard(
             title: doc["subject"],
-            height: blockHeight * 12,
+            height: blockHeight * 12.5,
             callback: () {
               subject = new Subject();
               subject.subjectName = doc["subject"];

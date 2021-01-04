@@ -1,5 +1,5 @@
 import 'package:LoginSample/models/UploadDocument.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomSubjectCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
@@ -58,7 +58,7 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
     return this
         .widget
         .docList
-        .map((doc) => CustomCard(
+        .map((doc) => CustomSubjectCard(
             title: doc["title"],
             callback: () {
               this.widget.ud.docURL = doc["url"];
