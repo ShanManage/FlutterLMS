@@ -31,16 +31,20 @@ class CustomAppbar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                color: Colors.white,
-                icon: Icon(
-                  (callbackHead != null) ? Icons.arrow_back_ios : null,
-                  size: blockWidth * 7,
-                ),
-                onPressed: () {
-                  callbackHead();
-                },
-              ),
+              (callbackHead != null)
+                  ? IconButton(
+                      color: Colors.white,
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        size: blockWidth * 7,
+                      ),
+                      onPressed: () {
+                        callbackHead();
+                      },
+                    )
+                  : Container(
+                      width: blockWidth * 7,
+                    ),
               SizedBox(width: blockWidth * 15),
               CustomText(
                 text: title,

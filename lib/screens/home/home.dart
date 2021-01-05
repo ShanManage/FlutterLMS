@@ -33,6 +33,7 @@ class Home extends StatelessWidget {
                 callbackTail: () async {
                   await _auth.signOut();
                 },
+                callbackHead: null,
               ),
             ),
             Container(
