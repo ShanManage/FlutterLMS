@@ -51,64 +51,58 @@ class _AudioViewScreen extends State<AudioViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // title: widget.title,
-      theme: ThemeData.light().copyWith(
-        platform: TargetPlatform.iOS,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.widget.ud.title.toString()),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(this.widget.ud.title.toString()),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: _chewieAudioController != null &&
-                        _chewieAudioController
-                            .videoPlayerController.value.initialized
-                    ? ChewieAudio(
-                        controller: _chewieAudioController,
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          CircularProgressIndicator(),
-                          SizedBox(height: 20),
-                          Text('Loading'),
-                        ],
-                      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Center(
+              child: _chewieAudioController != null &&
+                      _chewieAudioController
+                          .videoPlayerController.value.initialized
+                  ? ChewieAudio(
+                      controller: _chewieAudioController,
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 20),
+                        Text('Loading'),
+                      ],
+                    ),
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(5.0),
               ),
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(5.0),
-                ),
-                (this.widget.isPlay == false)
-                    ? Expanded(
-                        child: CustomButton(
-                          textColor: Colors.black,
-                          bgColor: Colors.green[200],
-                          title: "PLAY",
-                          callback: () {
-                            setState(() {
-                              _chewieAudioController = ChewieAudioController(
-                                videoPlayerController: _videoPlayerController1,
-                                autoPlay: true,
-                                looping: true,
-                              );
-                              this.widget.isPlay = true;
-                            });
-                          },
-                        ),
-                      )
-                    : Container(),
-              ],
-            ),
-            SizedBox(height: blockHeight * 10),
-          ],
-        ),
+              (this.widget.isPlay == false)
+                  ? Expanded(
+                      child: CustomButton(
+                        textColor: Colors.black,
+                        bgColor: Colors.green[200],
+                        title: "PLAY",
+                        callback: () {
+                          setState(() {
+                            _chewieAudioController = ChewieAudioController(
+                              videoPlayerController: _videoPlayerController1,
+                              autoPlay: true,
+                              looping: true,
+                            );
+                            this.widget.isPlay = true;
+                          });
+                        },
+                      ),
+                    )
+                  : Container(),
+            ],
+          ),
+          SizedBox(height: blockHeight * 10),
+        ],
       ),
     );
   }

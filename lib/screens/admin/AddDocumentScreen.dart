@@ -40,7 +40,6 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
       isUpload = false;
     });
     document.title = titleController.text;
-    // document.thumbnailURL = "thumnail urk";
 
     if (document.docGrade != null &&
         document.docSubject != null &&

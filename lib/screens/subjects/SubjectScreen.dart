@@ -4,6 +4,7 @@ import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomSubjectDocCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
+import 'package:LoginSample/screens/subjects/Audio/AudioViewScreen.dart';
 import 'package:LoginSample/screens/subjects/DocumentListScreen.dart';
 import 'package:LoginSample/screens/subjects/PDF/PDFViewScreen.dart';
 import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';
@@ -58,7 +59,7 @@ class SubjectScreen extends StatelessWidget {
                           (this.subject.pdfList.isNotEmpty)
                               ? CustomSubjectDocCard(
                                   title: "PDF",
-                                  cardIcon: Icons.picture_as_pdf,
+                                  imagePath: "assets/icons/pdf.png",
                                   callback: () {
                                     onClickPDF(context);
                                   },
@@ -67,7 +68,7 @@ class SubjectScreen extends StatelessWidget {
                           (this.subject.videoList.isNotEmpty)
                               ? CustomSubjectDocCard(
                                   title: "Video",
-                                  cardIcon: Icons.video_collection,
+                                  imagePath: "assets/icons/video.png",
                                   callback: () {
                                     onClickVideo(context);
                                   },
@@ -76,7 +77,7 @@ class SubjectScreen extends StatelessWidget {
                           (this.subject.audioList.isNotEmpty)
                               ? CustomSubjectDocCard(
                                   title: "Audio",
-                                  cardIcon: Icons.audiotrack,
+                                  imagePath: "assets/icons/audio.png",
                                   callback: () {
                                     onClickAudio(context);
                                   },
@@ -85,7 +86,7 @@ class SubjectScreen extends StatelessWidget {
                           (this.subject.lmsList.isNotEmpty)
                               ? CustomSubjectDocCard(
                                   title: "LMS",
-                                  cardIcon: Icons.picture_as_pdf,
+                                  imagePath: "assets/icons/lms.png",
                                   callback: () {
                                     onClickLMS(context);
                                   },
@@ -177,7 +178,7 @@ class SubjectScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => VideoViewScreen(ud: this.ud),
+                builder: (context) => AudioViewScreen(ud: this.ud),
               ),
             );
           },

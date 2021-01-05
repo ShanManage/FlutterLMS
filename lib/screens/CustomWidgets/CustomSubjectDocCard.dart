@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 class CustomSubjectDocCard extends StatelessWidget {
   String title;
-  IconData cardIcon;
+  String imagePath;
   final VoidCallback callback;
 
   CustomSubjectDocCard(
-      {@required this.title, @required this.cardIcon, @required this.callback});
+      {@required this.title,
+      @required this.imagePath,
+      @required this.callback});
 
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
@@ -42,7 +44,6 @@ class CustomSubjectDocCard extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(
@@ -52,23 +53,22 @@ class CustomSubjectDocCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black54, width: 1.5),
                     borderRadius: BorderRadius.all(
-                      Radius.circular(50.0),
+                      Radius.circular(10.0),
                     ),
                   ),
-                  child: Icon(
-                    cardIcon,
-                    size: blockHeight * 5,
-                    color: Colors.black54,
-                  ),
+                  child: Image.asset(imagePath),
+                  // Icon(
+                  //   cardIcon,
+                  //   size: blockHeight * 5,
+                  //   color: Colors.black54,
+                  // ),
                 ),
-                SizedBox(width: blockWidth * 5),
                 VerticalDivider(
                   color: Colors.black54,
                   thickness: 2,
                   indent: 20,
                   endIndent: 20,
                 ),
-                SizedBox(width: blockWidth * 7.5),
                 CustomText(
                   text: title,
                   color: Colors.black54,

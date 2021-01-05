@@ -13,17 +13,14 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Text(
-        text,
-        style: TextStyle(
-          fontWeight: (weight != null) ? weight : FontWeight.w500,
-          fontSize: (size != null) ? size : blockWidth * 5,
-          color: (color != null) ? color : Colors.white,
-        ),
-        softWrap: true,
-        maxLines: null,
+    return Text(
+      text,
+      style: TextStyle(
+        fontWeight: (weight != null) ? weight : FontWeight.w500,
+        fontSize: (size != null) ? size : blockWidth * 5,
+        color: (color != null) ? color : Colors.white,
       ),
+      softWrap: true,
     );
   }
 }

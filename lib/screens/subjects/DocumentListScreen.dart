@@ -1,6 +1,6 @@
 import 'package:LoginSample/models/UploadDocument.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomSubjectCard.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomDocCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -30,42 +30,52 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: CustomText(
-            text: this.widget.appBarTitle,
-            size: blockWidth * 8,
-          ),
-          actions: [
-            FlatButton.icon(
-                icon: Icon(Icons.person),
-                label: Text("logout"),
-                onPressed: () async {
-                  await _auth.signOut();
-                })
-          ],
-        ),
+        backgroundColor: Colors.blueGrey[50],
         body: Container(
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            children: loadDocument(),
+          color: Colors.blueGrey[50],
+          child: Column(
+            children: [
+              CustomAppbar(
+                title: this.widget.appBarTitle,
+                callbackTail: () async {
+                  await _auth.signOut();
+                },
+                callbackHead: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              Container(
+                height: blockHeight * 77.5,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Container(
+                    margin: EdgeInsets.only(top: blockHeight * 2.5),
+                    child: Wrap(
+                      spacing: blockWidth * 5,
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.start,
+                      children: [
+                        for (var doc in this.widget.docList)
+                          CustomDocCard(
+                            title: doc["title"],
+                            thumbnailURL: doc["thumbnail"],
+                            callback: () {
+                              this.widget.ud.docType =
+                                  this.widget.ud.docURL = doc["url"];
+                              this.widget.ud.title = doc["title"];
+                              this.widget.ud.thumbnailURL = doc["thumbnail"];
+                              this.widget.callback();
+                            },
+                          )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
-  }
-
-  loadDocument() {
-    return this
-        .widget
-        .docList
-        .map((doc) => CustomSubjectCard(
-            title: doc["title"],
-            callback: () {
-              this.widget.ud.docURL = doc["url"];
-              this.widget.ud.title = doc["title"];
-              this.widget.ud.thumbnailURL = doc["thumbnail"];
-              this.widget.callback();
-            }))
-        .toList();
   }
 }
