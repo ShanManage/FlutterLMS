@@ -1,3 +1,4 @@
+import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
@@ -32,15 +33,12 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.brown[100],
-        appBar: AppBar(
-          backgroundColor: Colors.brown,
-          title: CustomText(text: "Sign In for LMS"),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.symmetric(
-                  vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
+        backgroundColor: Colors.blueGrey[50],
+        body: Container(
+          color: Colors.blueGrey[50],
+          height: blockHeight * 77.5,
+              padding: EdgeInsets.symmetric(vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
+            child: SingleChildScrollView(
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -73,8 +71,8 @@ class _SignInState extends State<SignIn> {
                     // )
                   ],
                 ),
-              )),
-        ),
+              ),
+            )),
       ),
     );
   }

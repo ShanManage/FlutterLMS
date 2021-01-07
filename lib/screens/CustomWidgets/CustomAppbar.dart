@@ -18,7 +18,7 @@ class CustomAppbar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.blueGrey[800],
         image: DecorationImage(
-          image: AssetImage("assets/77.png"),
+          image: AssetImage("assets/66.jpg"),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.only(
@@ -59,7 +59,8 @@ class CustomAppbar extends StatelessWidget {
               weight: FontWeight.w600,
               color: Colors.black,
             ),
-            IconButton(
+            (callbackTail != null)
+            ? IconButton(
               color: Colors.black,
               icon: Icon(
                 Icons.more_vert,
@@ -68,7 +69,9 @@ class CustomAppbar extends StatelessWidget {
               onPressed: () {
                 callbackTail();
               },
-            )
+            ): Container(
+                    width: blockWidth * 7,
+                  ),
           ],
         ),
       ),

@@ -42,8 +42,6 @@ class _VideoViewScreen extends State<VideoViewScreen> {
     await _videoPlayerController1.initialize();
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController1,
-      autoPlay: true,
-      looping: true,
       materialProgressColors: ChewieProgressColors(
         playedColor: Colors.red,
         handleColor: Colors.blue,
