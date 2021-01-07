@@ -1,7 +1,5 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +28,22 @@ class _SignInState extends State<SignIn> {
   }
 
   @override
+  void initState() {
+    userNameController.text = '';
+    passController.text = '';
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.blueGrey[50],
         body: Container(
-          color: Colors.blueGrey[50],
-          height: blockHeight * 77.5,
-              padding: EdgeInsets.symmetric(vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
+            color: Colors.blueGrey[50],
+            height: blockHeight * 77.5,
+            padding: EdgeInsets.symmetric(
+                vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
             child: SingleChildScrollView(
               child: Form(
                 key: _formKey,
@@ -65,6 +71,7 @@ class _SignInState extends State<SignIn> {
                         onClickSignIn();
                       },
                     ),
+                    // TODO : get error from db
                     // Text(
                     //   error,
                     //   style: TextStyle(color: Colors.red, fontSize: 14.0),
