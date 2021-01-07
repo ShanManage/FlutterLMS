@@ -45,7 +45,7 @@ class CustomFormField extends StatelessWidget {
           prefixIcon: Icon(prefixIcon),
           hintText: hintText,
           filled: true,
-          fillColor: (fillColor == null) ? Colors.green[50] : fillColor,
+          fillColor: (fillColor == null) ? Colors.white : fillColor,
           border: InputBorder.none,
         ),
       ),
