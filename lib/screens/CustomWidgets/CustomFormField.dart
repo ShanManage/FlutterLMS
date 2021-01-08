@@ -36,7 +36,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       child: TextFormField(
         controller: this.widget.fieldController,
         obscureText: (isHide == true) ? true : false,
-        validator: (this.widget.isPass == true) ? validatePass : null,
+        validator: validatePass,
         keyboardType: (this.widget.inputType == null)
             ? TextInputType.text
             : this.widget.inputType,
@@ -82,10 +82,15 @@ class _CustomFormFieldState extends State<CustomFormField> {
   }
 
   String validatePass(String value) {
+    dynamic error;
     if (value.isEmpty) {
-      return "This field can't be empty";
+      if (this.widget.isPass) {
+        error = "Password can't be empty";
+      } else
+        error = "User name can't be empty";
     } else {
-      return null;
+      error = null;
     }
+    return error;
   }
 }

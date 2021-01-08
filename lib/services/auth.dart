@@ -17,15 +17,15 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFireBaseUser);
   }
 
-  Future signInWithEmailAndPassword(String userID, String password) async {
+  Future<dynamic> signInWithEmailAndPassword(
+      String userID, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: userID + "@gmail.com", password: password);
       User user = result.user;
       return _userFromFireBaseUser(user);
-    } catch (e) {
-      print(e.toString());
-      return null;
+    } on FirebaseException catch (e) {
+      return _userFromFireBaseUser(null);
     }
   }
 
@@ -38,10 +38,10 @@ class AuthService {
           .collection("users")
           .doc(result.user.uid)
           .set({'grade': int.parse(student.registerGrade)});
-      // Navigator.pushNamed(context, '/admin');
     } catch (e) {
       print(e.toString());
-      return null;
+      // return null;
+
     }
   }
 

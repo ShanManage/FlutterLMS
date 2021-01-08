@@ -1,5 +1,7 @@
+import 'package:LoginSample/models/User.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +20,26 @@ class _SignInState extends State<SignIn> {
   final userNameController = TextEditingController();
   final passController = TextEditingController();
 
+  bool isError = false;
   String error = '';
 
   onClickSignIn() async {
     if (_formKey.currentState.validate()) {
-      await _auth.signInWithEmailAndPassword(
-          userNameController.text, passController.text);
+      // await _auth.signInWithEmailAndPassword(
+      //     userNameController.text.trim(), passController.text.trim());
+      // setState(() {
+      //   isError = false;
+      //   error = "";
+      // });
+      dynamic result = await _auth.signInWithEmailAndPassword(
+          userNameController.text.trim(), passController.text.trim());
+      // if (result == null) {//
+      print(result);
+      // setState(() {
+      //   isError = true;
+      //   error = " Invalid";
+      // });
+      // }
     }
   }
 
@@ -73,11 +89,13 @@ class _SignInState extends State<SignIn> {
                         onClickSignIn();
                       },
                     ),
-                    // TODO : get error from db
-                    // Text(
-                    //   error,
-                    //   style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    // )
+                    // (isLoading = true) ? CustomLoading() : Container(),
+                    (isError == true)
+                        ? Text(
+                            error,
+                            style: TextStyle(color: Colors.red, fontSize: 14.0),
+                          )
+                        : Container(),
                   ],
                 ),
               ),

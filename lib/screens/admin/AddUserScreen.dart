@@ -23,8 +23,8 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
   onClickAddUser() async {
     if (_formKey.currentState.validate()) {
-      student.userName = userNameController.text;
-      student.password = passController.text;
+      student.userName = userNameController.text.trim();
+      student.password = passController.text.trim();
       await _auth.registerWithEmailAndPassword(student, context);
     }
   }
