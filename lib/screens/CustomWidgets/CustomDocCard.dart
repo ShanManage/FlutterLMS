@@ -49,7 +49,7 @@ class CustomDocCard extends StatelessWidget {
                   image: DecorationImage(
                     image: (this.thumbnailURL != null)
                         ? NetworkImage(this.thumbnailURL.toString())
-                        : AssetImage(defaultThumbnail),
+                        : AssetImage(defaultThumbnail, ),
                     fit: BoxFit.cover,
                   ),
                 ),
