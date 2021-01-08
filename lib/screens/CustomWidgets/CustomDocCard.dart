@@ -41,18 +41,26 @@ class CustomDocCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: blockHeight * 15,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  image: DecorationImage(
-                    image: (this.thumbnailURL != null)
-                        ? NetworkImage(this.thumbnailURL.toString())
-                        : AssetImage(defaultThumbnail),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
+              (this.thumbnailURL != null)
+                  ? Container(
+                      height: blockHeight * 15,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[400],
+                        image: DecorationImage(
+                          image: NetworkImage(this.thumbnailURL.toString()),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                  : Container(
+                      padding: EdgeInsets.all(blockWidth * 5),
+                      height: blockHeight * 15,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[400],
+                      ),
+                      child: Image.asset(defaultThumbnail),
+                    ),
               Container(
                 padding: EdgeInsets.all(blockWidth * 2),
                 child: Expanded(
