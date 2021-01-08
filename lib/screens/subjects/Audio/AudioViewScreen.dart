@@ -8,7 +8,6 @@ import 'package:video_player/video_player.dart';
 
 class AudioViewScreen extends StatefulWidget {
   UploadDocument ud;
-  bool isPlay = false;
 
   AudioViewScreen({@required this.ud});
 
@@ -44,8 +43,6 @@ class _AudioViewScreen extends State<AudioViewScreen> {
     await _videoPlayerController1.initialize();
     _chewieAudioController = ChewieAudioController(
       videoPlayerController: _videoPlayerController1,
-      // autoPlay: true,
-      // looping: true,
     );
     setState(() {});
   }
@@ -59,7 +56,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: blockHeight),             
+              SizedBox(height: blockHeight),
               Container(
                 margin: EdgeInsets.all(blockWidth * 2),
                 child: Row(
@@ -87,7 +84,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
                       },
                     ),
                     SizedBox(width: blockWidth * 5),
-                    Container(
+                    Expanded(
                       child: CustomText(
                         text: this.widget.ud.title.toString(),
                         color: Colors.black,
@@ -100,21 +97,21 @@ class _AudioViewScreen extends State<AudioViewScreen> {
               ),
               SizedBox(height: blockHeight * 5),
               Container(
+                margin: EdgeInsets.symmetric(horizontal: blockWidth * 5),
                 height: blockHeight * 40,
-                padding: EdgeInsets.symmetric(
-                  horizontal: blockHeight * 20,
-                  vertical: blockHeight * 20,
-                ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/sound.png"),
+                    image: (this.widget.ud.thumbnailURL != null)
+                        ? NetworkImage(this.widget.ud.thumbnailURL.toString())
+                        : AssetImage("assets/sound.png"),
                     fit: BoxFit.cover,
                   ),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.blueGrey[400],
-                      blurRadius: 25,
-                      spreadRadius: 3,
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 30,
+                      spreadRadius: 2,
                     )
                   ],
                 ),

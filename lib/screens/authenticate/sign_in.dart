@@ -1,6 +1,7 @@
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/globals.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
@@ -28,14 +29,15 @@ class _SignInState extends State<SignIn> {
     if (_formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
+        isError = false;
       });
       dynamic result = await _auth.signInWithEmailAndPassword(
           userNameController.text.trim(), passController.text.trim());
       if (result == null) {
-        print("asdasd");
         setState(() {
-          error = 'Email or password are invalid.';
+          error = 'Invalid username or password';
           isLoading = false;
+          isError = true;
         });
       }
     }
@@ -53,12 +55,10 @@ class _SignInState extends State<SignIn> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.blueGrey[50],
-        body: Container(
-            color: Colors.blueGrey[50],
-            height: blockHeight * 77.5,
-            padding: EdgeInsets.symmetric(
-                vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
-            child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: Container(
+              padding: EdgeInsets.symmetric(
+                  vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -88,16 +88,18 @@ class _SignInState extends State<SignIn> {
                       },
                     ),
                     (isLoading == true) ? CustomLoading() : Container(),
+                    SizedBox(height: blockHeight * 2.5),
                     (isError == true)
-                        ? Text(
-                            error,
-                            style: TextStyle(color: Colors.red, fontSize: 14.0),
+                        ? CustomText(
+                            text: error,
+                            color: Colors.red,
+                            size: blockWidth * 4,
                           )
                         : Container(),
                   ],
                 ),
-              ),
-            )),
+              )),
+        ),
       ),
     );
   }

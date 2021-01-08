@@ -109,6 +109,7 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.pdfList,
           appBarTitle: "PDF",
+          defaultThumbnail: "assets/thumbnails/pdf.png",
           ud: this.ud,
           callback: () {
             Navigator.push(
@@ -131,6 +132,7 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.videoList,
           appBarTitle: "Video",
+          defaultThumbnail: "assets/thumbnails/video.png",
           ud: this.ud,
           callback: () {
             Navigator.push(
@@ -152,6 +154,7 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.lmsList,
           appBarTitle: "LMS",
+          defaultThumbnail: "assets/thumbnails/lms.png",
           ud: this.ud,
           callback: () {
             Navigator.push(
@@ -173,6 +176,7 @@ class SubjectScreen extends StatelessWidget {
         builder: (context) => DocumentListScreen(
           docList: this.subject.audioList,
           appBarTitle: "Audio",
+          defaultThumbnail: "assets/thumbnails/audio.png",
           ud: this.ud,
           callback: () {
             Navigator.push(

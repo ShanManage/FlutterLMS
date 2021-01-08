@@ -31,7 +31,7 @@ class CustomSubjectCard extends StatelessWidget {
               color: Colors.white60,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.blueGrey[100],
+                  color: Colors.black.withOpacity(0.2),
                   blurRadius: 30,
                   spreadRadius: 2,
                 )

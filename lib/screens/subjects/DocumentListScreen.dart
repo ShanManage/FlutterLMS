@@ -8,13 +8,14 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class DocumentListScreen extends StatefulWidget {
   List<dynamic> docList = new List();
-  String appBarTitle;
+  String appBarTitle, defaultThumbnail;
   VoidCallback callback;
   UploadDocument ud;
   DocumentListScreen(
       {@required this.docList,
       @required this.appBarTitle,
       @required this.callback,
+      @required this.defaultThumbnail,
       this.ud});
   @override
   _DocumentListScreenState createState() => _DocumentListScreenState();
@@ -32,7 +33,6 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
       child: Scaffold(
         backgroundColor: Colors.blueGrey[50],
         body: Container(
-          color: Colors.blueGrey[50],
           child: Column(
             children: [
               CustomAppbar(
@@ -45,29 +45,34 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
                 },
               ),
               Container(
-                height: blockHeight * 77.5,
+                width: double.infinity,
+                height: blockHeight * 80,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Container(
-                    margin: EdgeInsets.only(top: blockHeight * 2.5),
-                    child: Wrap(
-                      spacing: blockWidth * 5,
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.start,
-                      children: [
-                        for (var doc in this.widget.docList)
-                          CustomDocCard(
-                            title: doc["title"],
-                            thumbnailURL: doc["thumbnail"],
-                            callback: () {
-                              this.widget.ud.docType =
-                                  this.widget.ud.docURL = doc["url"];
-                              this.widget.ud.title = doc["title"];
-                              this.widget.ud.thumbnailURL = doc["thumbnail"];
-                              this.widget.callback();
-                            },
-                          )
-                      ],
+                  child: Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: blockHeight * 0.5),
+                      child: Wrap(
+                        spacing: blockWidth * 5,
+                        direction: Axis.horizontal,
+                        alignment: WrapAlignment.start,
+                        children: [
+                          for (var doc in this.widget.docList)
+                            CustomDocCard(
+                              title: doc["title"],
+                              thumbnailURL: (doc["thumbnail"] != null)
+                                  ? doc["thumbnail"]
+                                  : this.widget.defaultThumbnail,
+                              callback: () {
+                                this.widget.ud.docType =
+                                    this.widget.ud.docURL = doc["url"];
+                                this.widget.ud.title = doc["title"];
+                                this.widget.ud.thumbnailURL = doc["thumbnail"];
+                                this.widget.callback();
+                              },
+                            )
+                        ],
+                      ),
                     ),
                   ),
                 ),

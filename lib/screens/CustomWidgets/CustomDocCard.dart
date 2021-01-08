@@ -28,7 +28,7 @@ class CustomDocCard extends StatelessWidget {
             color: Colors.white60,
             boxShadow: [
               BoxShadow(
-                color: Colors.blueGrey[50],
+                color: Colors.black.withOpacity(0.2),
                 blurRadius: 30,
                 spreadRadius: 2,
               )
@@ -55,11 +55,13 @@ class CustomDocCard extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.all(blockWidth * 2),
-                child: CustomText(
-                  text: title,
-                  color: Colors.blueGrey[900],
-                  size: blockHeight * 2,
-                  weight: FontWeight.w500,
+                child: Expanded(
+                  child: CustomText(
+                    text: title,
+                    color: Colors.blueGrey[900],
+                    size: blockHeight * 2,
+                    weight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],

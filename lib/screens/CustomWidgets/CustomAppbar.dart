@@ -35,43 +35,67 @@ class CustomAppbar extends StatelessWidget {
       ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: blockWidth * 5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            (callbackHead != null)
-                ? IconButton(
-                    color: Colors.black,
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      size: blockWidth * 7,
-                    ),
-                    onPressed: () {
-                      callbackHead();
-                    },
-                  )
-                : Container(
-                    width: blockWidth * 7,
-                  ),
-            // SizedBox(width: blockWidth * 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                (callbackHead != null)
+                    ? Container(
+                        padding: EdgeInsets.all(blockWidth * 2),
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple[400].withOpacity(0.3),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.arrow_back,
+                            size: blockWidth * 6,
+                            color: Colors.black,
+                          ),
+                          onTap: () {
+                            callbackHead();
+                          },
+                        ),
+                      )
+                    : Container(
+                        width: blockWidth * 7,
+                      ),
+                (callbackTail != null)
+                    ? Container(
+                        padding: EdgeInsets.all(blockWidth * 2),
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple[400].withOpacity(0.3),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.more_vert,
+                            size: blockWidth * 6,
+                            color: Colors.black,
+                          ),
+                          onTap: () {
+                            print("click");
+                            callbackTail();
+                          },
+                        ),
+                      )
+                    : Container(
+                        width: blockWidth * 7,
+                      ),
+              ],
+            ),
             CustomText(
               text: title,
               size: blockHeight * 6,
               weight: FontWeight.w600,
               color: Colors.black,
             ),
-            (callbackTail != null)
-            ? IconButton(
-              color: Colors.black,
-              icon: Icon(
-                Icons.more_vert,
-                size: blockHeight * 4,
-              ),
-              onPressed: () {
-                callbackTail();
-              },
-            ): Container(
-                    width: blockWidth * 7,
-                  ),
           ],
         ),
       ),

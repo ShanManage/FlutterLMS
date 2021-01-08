@@ -57,7 +57,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
             await dbService.uploadFile(docfile, docfileName, docUploadpath);
       }
       // else {
-      //   // show error message to upload file befor send data
+      // show error message to upload file befor send data
       // }
       if (document.docURL != null) {
         try {
