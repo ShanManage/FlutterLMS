@@ -60,9 +60,8 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
                           for (var doc in this.widget.docList)
                             CustomDocCard(
                               title: doc["title"],
-                              thumbnailURL: (doc["thumbnail"] != null)
-                                  ? doc["thumbnail"]
-                                  : this.widget.defaultThumbnail,
+                              thumbnailURL: doc["thumbnail"],
+                              defaultThumbnail: this.widget.defaultThumbnail,
                               callback: () {
                                 this.widget.ud.docType =
                                     this.widget.ud.docURL = doc["url"];

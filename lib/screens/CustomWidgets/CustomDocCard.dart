@@ -3,12 +3,13 @@ import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class CustomDocCard extends StatelessWidget {
-  String title, thumbnailURL;
+  String title, thumbnailURL, defaultThumbnail;
   final VoidCallback callback;
   CustomDocCard(
       {@required this.title,
       @required this.thumbnailURL,
-      @required this.callback});
+      @required this.callback,
+      @required this.defaultThumbnail});
 
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
@@ -48,7 +49,7 @@ class CustomDocCard extends StatelessWidget {
                   image: DecorationImage(
                     image: (this.thumbnailURL != null)
                         ? NetworkImage(this.thumbnailURL.toString())
-                        : AssetImage("assets/44.jpg"),
+                        : AssetImage(defaultThumbnail),
                     fit: BoxFit.cover,
                   ),
                 ),
