@@ -59,66 +59,66 @@ class _AudioViewScreen extends State<AudioViewScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: blockHeight),
-                Container(
-                  margin: EdgeInsets.all(blockWidth * 2),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: blockHeight * 0.5,
-                            vertical: blockHeight * 0.5,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 1.5),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50.0),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.arrow_back,
-                            size: blockHeight * 5,
-                            color: Colors.black54,
+              SizedBox(height: blockHeight),             
+              Container(
+                margin: EdgeInsets.all(blockWidth * 2),
+                child: Row(
+                  children: [
+                    InkWell(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: blockHeight * 0.5,
+                          vertical: blockHeight * 0.5,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 1.5),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(50.0),
                           ),
                         ),
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      SizedBox(width: blockWidth * 5),
-                      Container(
-                        child: CustomText(
-                          text: this.widget.ud.title.toString(),
-                          color: Colors.black,
-                          weight: FontWeight.w300,
-                          size: blockWidth * 6,
+                        child: Icon(
+                          Icons.arrow_back,
+                          size: blockHeight * 5,
+                          color: Colors.black54,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: blockHeight * 5),
-                Container(
-                  height: blockHeight * 40,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: blockHeight * 20,
-                      vertical: blockHeight * 20,
-                  ),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                      image: AssetImage("assets/sound.png"),
-                      fit: BoxFit.cover,
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    SizedBox(width: blockWidth * 5),
+                    Container(
+                      child: CustomText(
+                        text: this.widget.ud.title.toString(),
+                        color: Colors.black,
+                        weight: FontWeight.w300,
+                        size: blockWidth * 6,
                       ),
-                      boxShadow: [
-                      BoxShadow(
-                          color: Colors.blueGrey[400],
-                          blurRadius: 25,
-                          spreadRadius: 3,
-                      )
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
+              SizedBox(height: blockHeight * 5),
+              Container(
+                height: blockHeight * 40,
+                padding: EdgeInsets.symmetric(
+                  horizontal: blockHeight * 20,
+                  vertical: blockHeight * 20,
+                ),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/sound.png"),
+                    fit: BoxFit.cover,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blueGrey[400],
+                      blurRadius: 25,
+                      spreadRadius: 3,
+                    )
+                  ],
+                ),
+              ),
               Expanded(
                 child: Center(
                   child: _chewieAudioController != null &&

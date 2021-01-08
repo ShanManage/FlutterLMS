@@ -1,7 +1,5 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +42,7 @@ class _SignInState extends State<SignIn> {
                 child: Column(
                   children: [
                     CustomFormField(
+                      fillColor: Colors.deepPurple[100],
                       hintText: "username",
                       isPass: false,
                       fieldController: userNameController,
@@ -51,6 +50,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: blockHeight * 2.5),
                     CustomFormField(
+                      fillColor: Colors.deepPurple[100],
                       hintText: "password",
                       isPass: true,
                       fieldController: passController,
@@ -59,8 +59,8 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: blockHeight * 2.5),
                     CustomButton(
                       title: "Log In",
-                      bgColor: Colors.green[400],
-                      textColor: Colors.black,
+                      bgColor: Colors.deepPurple[400],
+                      textColor: Colors.white,
                       callback: () {
                         onClickSignIn();
                       },
