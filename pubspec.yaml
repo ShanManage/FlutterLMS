@@ -39,6 +39,7 @@ dependencies:
   flutter_cached_pdfview: ^0.3.3
   chewie: ^0.12.1+1
   chewie_audio: ^1.1.1
+  material_design_icons_flutter: ^4.0.5755
 
 dev_dependencies:
   flutter_test:

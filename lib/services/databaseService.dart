@@ -11,7 +11,15 @@ class DatabaseService {
   final storageInstance = FirebaseStorage.instance;
 
   Stream<dynamic> getSubjects(int grade) {
-    return firestoreInstance.collection(grade.toString()).snapshots();
+    Stream<QuerySnapshot> snapshot;
+    try {
+      snapshot = firestoreInstance.collection(grade.toString()).snapshots();
+    } catch (e) {
+      print(" ERROR WHILE GETTING DATA : " + e.toString());
+      print(" ERROR ON GRADE : " + grade.toString());
+    }
+
+    return snapshot;
   }
 
   insertDocument(UploadDocument ud) async {
@@ -26,21 +34,24 @@ class DatabaseService {
         ])
       }, SetOptions(merge: true));
     } catch (e) {
-      print("DATABSE SERVICE : " + e.toString());
+      print("ERROR WHILE UPLOADING DATA : " + e.toString());
+      print("DOCUMENT : " + ud.toString());
     }
   }
 
   Future<String> uploadFile(File file, String filename, String filePath) async {
     StorageReference storageReference = storageInstance.ref();
     StorageUploadTask uploadTask;
+    String url;
     try {
       uploadTask = storageReference.child(filePath).putFile(file);
+      StorageTaskSnapshot downloadUrl = await uploadTask.onComplete;
+      url = await downloadUrl.ref.getDownloadURL();
     } catch (e) {
       print("ERROR WHILE UPLOADING DOCUMENT : " + e.toString());
+      print("DOCUMENT : " + filename);
     }
 
-    StorageTaskSnapshot downloadUrl = await uploadTask.onComplete;
-    String url = await downloadUrl.ref.getDownloadURL();
     return url;
   }
 }
