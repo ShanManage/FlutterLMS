@@ -1,7 +1,7 @@
-import 'package:LoginSample/models/User.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
+import 'package:LoginSample/screens/shared/globals.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -21,25 +21,23 @@ class _SignInState extends State<SignIn> {
   final passController = TextEditingController();
 
   bool isError = false;
+  bool isLoading = false;
   String error = '';
 
   onClickSignIn() async {
     if (_formKey.currentState.validate()) {
-      // await _auth.signInWithEmailAndPassword(
-      //     userNameController.text.trim(), passController.text.trim());
-      // setState(() {
-      //   isError = false;
-      //   error = "";
-      // });
+      setState(() {
+        isLoading = true;
+      });
       dynamic result = await _auth.signInWithEmailAndPassword(
           userNameController.text.trim(), passController.text.trim());
-      // if (result == null) {//
-      print(result);
-      // setState(() {
-      //   isError = true;
-      //   error = " Invalid";
-      // });
-      // }
+      if (result == null) {
+        print("asdasd");
+        setState(() {
+          error = 'Email or password are invalid.';
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -89,7 +87,7 @@ class _SignInState extends State<SignIn> {
                         onClickSignIn();
                       },
                     ),
-                    // (isLoading = true) ? CustomLoading() : Container(),
+                    (isLoading == true) ? CustomLoading() : Container(),
                     (isError == true)
                         ? Text(
                             error,

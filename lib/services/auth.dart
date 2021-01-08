@@ -17,15 +17,18 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFireBaseUser);
   }
 
-  Future<dynamic> signInWithEmailAndPassword(
-      String userID, String password) async {
+  Future signInWithEmailAndPassword(String userID, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: userID + "@gmail.com", password: password);
       User user = result.user;
       return _userFromFireBaseUser(user);
-    } on FirebaseException catch (e) {
-      return _userFromFireBaseUser(null);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
     }
   }
 
@@ -40,8 +43,7 @@ class AuthService {
           .set({'grade': int.parse(student.registerGrade)});
     } catch (e) {
       print(e.toString());
-      // return null;
-
+      return null;
     }
   }
 
