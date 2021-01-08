@@ -46,12 +46,12 @@ class CustomSubjectCard extends StatelessWidget {
               children: [
                 CustomText(
                   text: title,
-                  color: Colors.blueGrey[900],
+                  color: Colors.deepPurple[500],
                   size: blockHeight * 3,
-                  weight: FontWeight.w400,
+                  weight: FontWeight.w700,
                 ),
                 IconButton(
-                  color: Colors.blueGrey[900],
+                  color: Colors.deepPurple[500],
                   icon: Icon(
                     Icons.keyboard_arrow_right,
                     size: blockHeight * 4,

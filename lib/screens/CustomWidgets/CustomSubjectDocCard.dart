@@ -49,16 +49,19 @@ class CustomSubjectDocCard extends StatelessWidget {
                   vertical: blockHeight * 1,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black54, width: 1.5),
+                  border: Border.all(color: Colors.deepPurple[500], width: 1.5),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   ),
                 ),
-                child: Image.asset(imagePath),
+                child: Image.asset(
+                  imagePath,
+                  color: Colors.deepPurple[500],
+                ),
               ),
               SizedBox(width: blockWidth * 5),
               VerticalDivider(
-                color: Colors.black54,
+                color: Colors.deepPurple[500],
                 thickness: 2,
                 indent: 15,
                 endIndent: 15,
@@ -67,13 +70,13 @@ class CustomSubjectDocCard extends StatelessWidget {
               Expanded(
                 child: CustomText(
                   text: title,
-                  color: Colors.black54,
+                  color: Colors.deepPurple[500],
                   size: blockHeight * 3,
                   weight: FontWeight.w700,
                 ),
               ),
               IconButton(
-                color: Colors.black54,
+                color: Colors.deepPurple[500],
                 icon: Icon(
                   Icons.arrow_forward_ios,
                   size: blockHeight * 4,

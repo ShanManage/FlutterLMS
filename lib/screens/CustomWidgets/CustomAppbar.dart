@@ -1,3 +1,4 @@
+import 'package:LoginSample/screens/CustomWidgets/CustomIconButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -42,48 +43,21 @@ class CustomAppbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 (callbackHead != null)
-                    ? Container(
-                        padding: EdgeInsets.all(blockWidth * 2),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurple[400].withOpacity(0.3),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                        child: InkWell(
-                          child: Icon(
-                            Icons.arrow_back,
-                            size: blockWidth * 6,
-                            color: Colors.black,
-                          ),
-                          onTap: () {
-                            callbackHead();
-                          },
-                        ),
+                    ? CustomIconButton(
+                        icon: Icons.arrow_back,
+                        callback: () {
+                          callbackHead();
+                        },
                       )
                     : Container(
                         width: blockWidth * 7,
                       ),
                 (callbackTail != null)
-                    ? Container(
-                        padding: EdgeInsets.all(blockWidth * 2),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurple[400].withOpacity(0.3),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                        child: InkWell(
-                          child: Icon(
-                            Icons.more_vert,
-                            size: blockWidth * 6,
-                            color: Colors.black,
-                          ),
-                          onTap: () {
-                            print("click");
-                            callbackTail();
-                          },
-                        ),
+                    ? CustomIconButton(
+                        icon: Icons.more_vert,
+                        callback: () {
+                          callbackTail();
+                        },
                       )
                     : Container(
                         width: blockWidth * 7,

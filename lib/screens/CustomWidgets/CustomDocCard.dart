@@ -18,7 +18,6 @@ class CustomDocCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        // color: Colors.black12,
         padding: EdgeInsets.symmetric(
           vertical: blockHeight * 2,
         ),
@@ -45,12 +44,12 @@ class CustomDocCard extends StatelessWidget {
               Container(
                 height: blockHeight * 15,
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey[100],
+                  color: Colors.grey,
                   image: DecorationImage(
                     image: (this.thumbnailURL != null)
                         ? NetworkImage(this.thumbnailURL.toString())
                         : AssetImage(defaultThumbnail),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
