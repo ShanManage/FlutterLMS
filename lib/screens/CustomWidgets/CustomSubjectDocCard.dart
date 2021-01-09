@@ -29,7 +29,7 @@ class CustomSubjectDocCard extends StatelessWidget {
             vertical: blockWidth * 4,
           ),
           decoration: BoxDecoration(
-            color: Colors.white60,
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),

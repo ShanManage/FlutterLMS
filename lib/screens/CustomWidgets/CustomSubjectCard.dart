@@ -28,7 +28,7 @@ class CustomSubjectCard extends StatelessWidget {
               vertical: blockWidth * 4,
             ),
             decoration: BoxDecoration(
-              color: Colors.white60,
+              color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
@@ -44,11 +44,13 @@ class CustomSubjectCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CustomText(
-                  text: title,
-                  color: Colors.deepPurple[500],
-                  size: blockHeight * 3,
-                  weight: FontWeight.w700,
+                Expanded(
+                  child: CustomText(
+                    text: title,
+                    color: Colors.deepPurple[500],
+                    size: blockHeight * 3,
+                    weight: FontWeight.w700,
+                  ),
                 ),
                 IconButton(
                   color: Colors.deepPurple[500],

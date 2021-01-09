@@ -181,6 +181,34 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
       child: new Text("Budhism"),
       value: "budhism",
     ),
+    DropdownMenuItem(
+      child: new Text("ICT"),
+      value: "ict",
+    ),
+    DropdownMenuItem(
+      child: new Text("Dancing"),
+      value: "dancing",
+    ),
+    DropdownMenuItem(
+      child: new Text("Art"),
+      value: "art",
+    ),
+    DropdownMenuItem(
+      child: new Text("Drama"),
+      value: "drama",
+    ),
+    DropdownMenuItem(
+      child: new Text("Geography"),
+      value: "geography",
+    ),
+    DropdownMenuItem(
+      child: new Text("Tamil"),
+      value: "tamil",
+    ),
+    DropdownMenuItem(
+      child: new Text("Health"),
+      value: "health",
+    ),
   ];
 
   List<DropdownMenuItem<String>> _documentType = [

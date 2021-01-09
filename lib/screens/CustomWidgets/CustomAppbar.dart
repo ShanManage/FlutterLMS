@@ -17,10 +17,10 @@ class CustomAppbar extends StatelessWidget {
     return Container(
       height: blockHeight * 20,
       decoration: BoxDecoration(
-        color: Colors.blueGrey[800],
+        color: Colors.transparent,
         image: DecorationImage(
           image: AssetImage("assets/cover.jpg"),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(50.0),
@@ -66,7 +66,7 @@ class CustomAppbar extends StatelessWidget {
             ),
             CustomText(
               text: title,
-              size: blockHeight * 6,
+              size: blockHeight * 5,
               weight: FontWeight.w600,
               color: Colors.black,
             ),

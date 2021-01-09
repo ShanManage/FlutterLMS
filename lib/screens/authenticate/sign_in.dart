@@ -2,7 +2,6 @@ import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
-import 'package:LoginSample/screens/shared/globals.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -58,44 +57,56 @@ class _SignInState extends State<SignIn> {
         body: SingleChildScrollView(
           child: Container(
               padding: EdgeInsets.symmetric(
-                  vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
+                vertical: blockHeight * 15,
+              ),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
-                    CustomFormField(
-                      fillColor: Colors.deepPurple[100],
-                      hintText: "username",
-                      isPass: false,
-                      fieldController: userNameController,
-                      prefixIcon: Icons.person,
+                    Image.asset("assets/splash.png", width: blockWidth * 90),
+                    SizedBox(height: blockHeight * 10),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: blockWidth * 12.5,
+                      ),
+                      child: Column(
+                        children: [
+                          CustomFormField(
+                            fillColor: Colors.deepPurple[100],
+                            hintText: "username",
+                            isPass: false,
+                            fieldController: userNameController,
+                            prefixIcon: Icons.person,
+                          ),
+                          SizedBox(height: blockHeight * 2.5),
+                          CustomFormField(
+                            fillColor: Colors.deepPurple[100],
+                            hintText: "password",
+                            isPass: true,
+                            fieldController: passController,
+                            prefixIcon: Icons.lock,
+                          ),
+                          SizedBox(height: blockHeight * 2.5),
+                          CustomButton(
+                            title: "Log In",
+                            bgColor: Colors.deepPurple[400],
+                            textColor: Colors.white,
+                            callback: () {
+                              onClickSignIn();
+                            },
+                          ),
+                          (isLoading == true) ? CustomLoading() : Container(),
+                          SizedBox(height: blockHeight * 2.5),
+                          (isError == true)
+                              ? CustomText(
+                                  text: error,
+                                  color: Colors.red,
+                                  size: blockWidth * 4,
+                                )
+                              : Container(),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: blockHeight * 2.5),
-                    CustomFormField(
-                      fillColor: Colors.deepPurple[100],
-                      hintText: "password",
-                      isPass: true,
-                      fieldController: passController,
-                      prefixIcon: Icons.lock,
-                    ),
-                    SizedBox(height: blockHeight * 2.5),
-                    CustomButton(
-                      title: "Log In",
-                      bgColor: Colors.deepPurple[400],
-                      textColor: Colors.white,
-                      callback: () {
-                        onClickSignIn();
-                      },
-                    ),
-                    (isLoading == true) ? CustomLoading() : Container(),
-                    SizedBox(height: blockHeight * 2.5),
-                    (isError == true)
-                        ? CustomText(
-                            text: error,
-                            color: Colors.red,
-                            size: blockWidth * 4,
-                          )
-                        : Container(),
                   ],
                 ),
               )),
