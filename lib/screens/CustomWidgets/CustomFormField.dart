@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomFormField extends StatelessWidget {
+class CustomFormField extends StatefulWidget {
   String hintText;
   bool isPass;
   TextEditingController fieldController;
@@ -15,15 +15,31 @@ class CustomFormField extends StatelessWidget {
       @required this.prefixIcon,
       this.fillColor,
       this.inputType});
+  @override
+  _CustomFormFieldState createState() => _CustomFormFieldState();
+}
+
+class _CustomFormFieldState extends State<CustomFormField> {
+  bool isHide = false;
+
+  @override
+  void initState() {
+    if (this.widget.isPass == true) {
+      isHide = true;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: TextFormField(
-        controller: fieldController,
-        obscureText: isPass,
-        validator: (isPass == true) ? validatePass : null,
-        keyboardType: (inputType == null) ? TextInputType.text : inputType,
+        controller: this.widget.fieldController,
+        obscureText: (isHide == true) ? true : false,
+        validator: validatePass,
+        keyboardType: (this.widget.inputType == null)
+            ? TextInputType.text
+            : this.widget.inputType,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(10.0),
           enabledBorder: OutlineInputBorder(
@@ -42,10 +58,23 @@ class CustomFormField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.transparent),
             borderRadius: BorderRadius.circular(50.0),
           ),
-          prefixIcon: Icon(prefixIcon),
-          hintText: hintText,
+          prefixIcon: Icon(this.widget.prefixIcon),
+          suffixIcon: (this.widget.isPass == true)
+              ? IconButton(
+                  icon: Icon(
+                    (isHide == true) ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isHide = !isHide;
+                    });
+                  })
+              : null,
+          hintText: this.widget.hintText,
           filled: true,
-          fillColor: (fillColor == null) ? Colors.green[50] : fillColor,
+          fillColor: (this.widget.fillColor == null)
+              ? Colors.white
+              : this.widget.fillColor,
           border: InputBorder.none,
         ),
       ),
@@ -53,10 +82,15 @@ class CustomFormField extends StatelessWidget {
   }
 
   String validatePass(String value) {
+    dynamic error;
     if (value.isEmpty) {
-      return "This field can't be empty";
+      if (this.widget.isPass) {
+        error = "Password can't be empty";
+      } else
+        error = "User name can't be empty";
     } else {
-      return null;
+      error = null;
     }
+    return error;
   }
 }

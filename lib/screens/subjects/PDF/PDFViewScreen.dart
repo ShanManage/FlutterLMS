@@ -25,84 +25,121 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: CustomText(
-            text: this.widget.ud.title,
-            size: blockWidth * 8,
+        backgroundColor: Colors.white,
+        body: Container(
+          margin: EdgeInsets.only(
+            left: blockWidth * 2.5,
+            right: blockWidth * 2.5,
+            bottom: blockHeight,
           ),
-          actions: [
-            FlatButton.icon(
-                icon: Icon(Icons.person),
-                label: Text("logout"),
-                onPressed: () async {
-                  await _auth.signOut();
-                })
-          ],
-        ),
-        body: Column(
-          children: [
-            SizedBox(height: blockHeight),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: blockHeight),
+                InkWell(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: blockHeight * 0.5,
+                      vertical: blockHeight * 0.5,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 1.5),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50.0),
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: blockHeight * 5,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                SizedBox(height: blockHeight),
                 Container(
                   color: Colors.black,
-                  child: CustomText(
-                    text: this.widget.ud.title.toString() +
-                        " asdasd asdasd asdasd asdasd asdasd",
-                    color: Colors.white,
-                    weight: FontWeight.w300,
-                    size: blockWidth * 5,
-                  ),
+                  width: double.infinity,
+                  height: blockHeight * 0.25,
                 ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blue[500],
-                  ),
-                  child: CustomText(
-                    text: page.toString() + "/" + total.toString(),
-                    color: Colors.white,
-                    weight: FontWeight.w500,
-                    size: blockWidth * 5,
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              height: blockHeight * 80,
-              child: PDF(
-                autoSpacing: false,
-                enableSwipe: true,
-                swipeHorizontal: true,
-                pageFling: false,
-                fitPolicy: FitPolicy.BOTH,
-                onPageChanged: (int page, int total) {
-                  setState(() {
-                    this.page = page + 1;
-                    this.total = total;
-                  });
-                },
-              ).fromUrl(
-                this.widget.ud.docURL,
-                placeholder: (double progress) => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                SizedBox(height: blockHeight),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomLoading(),
-                    Text('$progress %'),
+                    Container(
+                      child: Expanded(
+                        child: CustomText(
+                          text: this.widget.ud.title.toString(),
+                          color: Colors.black,
+                          weight: FontWeight.w300,
+                          size: blockWidth * 5,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(blockWidth * 4),
+                      child: CustomText(
+                        text: page.toString() + "/" + total.toString(),
+                        color: Colors.black,
+                        weight: FontWeight.w500,
+                        size: blockWidth * 4,
+                      ),
+                    ),
                   ],
                 ),
-                errorWidget: (dynamic error) => Center(
-                  child: CustomText(
-                    text:
-                        "Error while downloading the pdf.. please reload again.  " +
-                            error.toString(),
+                SizedBox(height: blockHeight),
+                Container(
+                  color: Colors.blueGrey[50],
+                  height: blockHeight * 77.5,
+                  child: PDF(
+                    autoSpacing: false,
+                    enableSwipe: true,
+                    swipeHorizontal: true,
+                    pageFling: false,
+                    onPageChanged: (int page, int total) {
+                      setState(() {
+                        this.page = page + 1;
+                        this.total = total;
+                      });
+                    },
+                  ).fromUrl(
+                    this.widget.ud.docURL,
+                    placeholder: (double progress) => Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomLoading(),
+                        Text('$progress %'),
+                      ],
+                    ),
+                    errorWidget: (dynamic error) => Center(
+                      child: CustomText(
+                        text:
+                            "Error while downloading the pdf.. please reload again.  " +
+                                error.toString(),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                SizedBox(height: blockHeight),
+                Container(
+                  color: Colors.black,
+                  width: double.infinity,
+                  height: blockHeight * 0.25,
+                ),
+                SizedBox(height: blockHeight),
+                Center(
+                    child: CustomText(
+                  text: "Please swap to turn pages",
+                  color: Colors.black,
+                  size: blockWidth * 3.5,
+                  weight: FontWeight.w900,
+                )),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

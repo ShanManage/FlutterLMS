@@ -1,5 +1,6 @@
 import 'package:LoginSample/models/Subject.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomSubjectCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectScreen.dart';
@@ -26,16 +27,21 @@ class SubjectListScreen extends StatelessWidget {
       stream: subjectStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // TODO : meka hadapan
           return CustomLoading();
         } else {
-          return Container(
-            padding: EdgeInsets.symmetric(vertical: blockHeight * 2.5),
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: loadSubjects(snapshot, context),
-            ),
-          );
+          if (snapshot.hasData && snapshot.data.size != 0) {
+            return Container(
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: loadSubjects(snapshot, context),
+              ),
+            );
+          } else {
+            return CustomNotificationCard(
+              title:
+                  "Something went wrong.. Plese restart the app after few minutes",
+            );
+          }
         }
       },
     );
@@ -44,9 +50,9 @@ class SubjectListScreen extends StatelessWidget {
   loadSubjects(AsyncSnapshot<QuerySnapshot> snapshot, BuildContext context) {
     return snapshot.data.docs
         .map(
-          (doc) => CustomCard(
+          (doc) => CustomSubjectCard(
             title: doc["subject"],
-            height: blockHeight * 12,
+            height: blockHeight * 12.5,
             callback: () {
               subject = new Subject();
               subject.subjectName = doc["subject"];

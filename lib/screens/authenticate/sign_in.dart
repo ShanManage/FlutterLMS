@@ -1,5 +1,6 @@
 import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
@@ -19,58 +20,93 @@ class _SignInState extends State<SignIn> {
   final userNameController = TextEditingController();
   final passController = TextEditingController();
 
+  bool isError = false;
+  bool isLoading = false;
   String error = '';
 
   onClickSignIn() async {
     if (_formKey.currentState.validate()) {
-      await _auth.signInWithEmailAndPassword(
-          userNameController.text, passController.text);
+      setState(() {
+        isLoading = true;
+        isError = false;
+      });
+      dynamic result = await _auth.signInWithEmailAndPassword(
+          userNameController.text.trim(), passController.text.trim());
+      if (result == null) {
+        setState(() {
+          error = 'Invalid username or password';
+          isLoading = false;
+          isError = true;
+        });
+      }
     }
+  }
+
+  @override
+  void initState() {
+    userNameController.text = '';
+    passController.text = '';
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.brown[100],
-        appBar: AppBar(
-          backgroundColor: Colors.brown,
-          title: CustomText(text: "Sign In for LMS"),
-        ),
+        backgroundColor: Colors.blueGrey[50],
         body: SingleChildScrollView(
           child: Container(
               padding: EdgeInsets.symmetric(
-                  vertical: blockHeight * 20, horizontal: blockWidth * 12.5),
+                vertical: blockHeight * 15,
+              ),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
-                    CustomFormField(
-                      hintText: "username",
-                      isPass: false,
-                      fieldController: userNameController,
-                      prefixIcon: Icons.person,
+                    Image.asset("assets/splash.png", width: blockWidth * 90),
+                    SizedBox(height: blockHeight * 10),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: blockWidth * 12.5,
+                      ),
+                      child: Column(
+                        children: [
+                          CustomFormField(
+                            fillColor: Colors.deepPurple[100],
+                            hintText: "username",
+                            isPass: false,
+                            fieldController: userNameController,
+                            prefixIcon: Icons.person,
+                          ),
+                          SizedBox(height: blockHeight * 2.5),
+                          CustomFormField(
+                            fillColor: Colors.deepPurple[100],
+                            hintText: "password",
+                            isPass: true,
+                            fieldController: passController,
+                            prefixIcon: Icons.lock,
+                          ),
+                          SizedBox(height: blockHeight * 2.5),
+                          CustomButton(
+                            title: "Log In",
+                            bgColor: Colors.deepPurple[400],
+                            textColor: Colors.white,
+                            callback: () {
+                              onClickSignIn();
+                            },
+                          ),
+                          (isLoading == true) ? CustomLoading() : Container(),
+                          SizedBox(height: blockHeight * 2.5),
+                          (isError == true)
+                              ? CustomText(
+                                  text: error,
+                                  color: Colors.red,
+                                  size: blockWidth * 4,
+                                )
+                              : Container(),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: blockHeight * 2.5),
-                    CustomFormField(
-                      hintText: "password",
-                      isPass: true,
-                      fieldController: passController,
-                      prefixIcon: Icons.lock,
-                    ),
-                    SizedBox(height: blockHeight * 2.5),
-                    CustomButton(
-                      title: "Log In",
-                      bgColor: Colors.green[400],
-                      textColor: Colors.black,
-                      callback: () {
-                        onClickSignIn();
-                      },
-                    ),
-                    // Text(
-                    //   error,
-                    //   style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    // )
                   ],
                 ),
               )),

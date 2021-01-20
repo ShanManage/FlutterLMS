@@ -23,9 +23,8 @@ class AuthService {
           email: userID + "@gmail.com", password: password);
       User user = result.user;
       return _userFromFireBaseUser(user);
-    } catch (e) {
-      print(e.toString());
-      return null;
+    } on FirebaseAuthException catch (e) {
+      print("INVALID USER CREDENTIALS ");
     }
   }
 
@@ -38,7 +37,6 @@ class AuthService {
           .collection("users")
           .doc(result.user.uid)
           .set({'grade': int.parse(student.registerGrade)});
-      // Navigator.pushNamed(context, '/admin');
     } catch (e) {
       print(e.toString());
       return null;

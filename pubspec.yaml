@@ -37,6 +37,9 @@ dependencies:
   direct_select_flutter: ^1.0.7
   file_picker: 1.4.3+1
   flutter_cached_pdfview: ^0.3.3
+  chewie: ^0.12.1+1
+  chewie_audio: ^1.1.1
+  material_design_icons_flutter: ^4.0.5755
 
 dev_dependencies:
   flutter_test:
@@ -54,8 +57,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
+    - assets/icons/
+    - assets/thumbnails/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

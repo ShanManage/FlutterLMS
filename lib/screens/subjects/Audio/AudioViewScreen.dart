@@ -1,15 +1,13 @@
 import 'package:LoginSample/models/UploadDocument.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:chewie_audio/chewie_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-// ignore: must_be_immutable
 class AudioViewScreen extends StatefulWidget {
   UploadDocument ud;
-  bool isPlay = false;
 
   AudioViewScreen({@required this.ud});
 
@@ -29,7 +27,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
   @override
   void initState() {
     super.initState();
-    initializePlayer();
+    this.initializePlayer();
   }
 
   @override
@@ -45,70 +43,99 @@ class _AudioViewScreen extends State<AudioViewScreen> {
     await _videoPlayerController1.initialize();
     _chewieAudioController = ChewieAudioController(
       videoPlayerController: _videoPlayerController1,
-      // autoPlay: true,
-      looping: true,
     );
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // title: widget.title,
-      theme: ThemeData.light().copyWith(
-        platform: TargetPlatform.iOS,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(this.widget.ud.title.toString()),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: _chewieAudioController != null &&
-                        _chewieAudioController
-                            .videoPlayerController.value.initialized
-                    ? ChewieAudio(
-                        controller: _chewieAudioController,
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          CircularProgressIndicator(),
-                          SizedBox(height: 20),
-                          Text('Loading'),
-                        ],
-                      ),
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(5.0),
-                ),
-                (this.widget.isPlay == false)
-                    ? Expanded(
-                        child: CustomButton(
-                          textColor: Colors.black,
-                          bgColor: Colors.green[200],
-                          title: "PLAY",
-                          callback: () {
-                            setState(() {
-                              _chewieAudioController = ChewieAudioController(
-                                videoPlayerController: _videoPlayerController1,
-                                autoPlay: true,
-                                looping: true,
-                              );
-                              this.widget.isPlay = true;
-                            });
-                          },
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: blockHeight),
+              Container(
+                margin: EdgeInsets.all(blockWidth * 2),
+                child: Row(
+                  children: [
+                    InkWell(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: blockHeight * 0.5,
+                          vertical: blockHeight * 0.5,
                         ),
-                      )
-                    : Container(),
-              ],
-            ),
-            SizedBox(height: blockHeight * 10),
-          ],
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 1.5),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(50.0),
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.arrow_back,
+                          size: blockHeight * 5,
+                          color: Colors.black54,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    SizedBox(width: blockWidth * 5),
+                    Expanded(
+                      child: CustomText(
+                        text: this.widget.ud.title.toString(),
+                        color: Colors.black,
+                        weight: FontWeight.w300,
+                        size: blockWidth * 6,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: blockHeight * 5),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: blockWidth * 5),
+                height: blockHeight * 40,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: (this.widget.ud.thumbnailURL != null)
+                        ? NetworkImage(this.widget.ud.thumbnailURL.toString())
+                        : AssetImage("assets/sound.png"),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 30,
+                      spreadRadius: 2,
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: _chewieAudioController != null &&
+                          _chewieAudioController
+                              .videoPlayerController.value.initialized
+                      ? ChewieAudio(
+                          controller: _chewieAudioController,
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            CircularProgressIndicator(),
+                            SizedBox(height: 20),
+                            Text('Loading'),
+                          ],
+                        ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
