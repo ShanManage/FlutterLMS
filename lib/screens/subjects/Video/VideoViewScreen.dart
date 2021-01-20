@@ -4,6 +4,7 @@ import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoViewScreen extends StatefulWidget {
@@ -89,7 +90,7 @@ class _VideoViewScreen extends State<VideoViewScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).pop();
+                        Get.back();
                       },
                     ),
                     SizedBox(width: blockWidth * 5),

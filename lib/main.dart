@@ -4,6 +4,7 @@ import 'package:LoginSample/screens/wrapper.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<LocalUser>.value(
       value: AuthService().user,
-      child: MaterialApp(
+      child: GetMaterialApp(
         home: Wrapper(),
         debugShowCheckedModeBanner: false,
         routes: {

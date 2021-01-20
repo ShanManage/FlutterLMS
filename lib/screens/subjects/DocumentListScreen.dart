@@ -4,6 +4,7 @@ import 'package:LoginSample/screens/CustomWidgets/CustomDocCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class DocumentListScreen extends StatefulWidget {
@@ -27,6 +28,13 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
 
   final AuthService _auth = AuthService();
 
+  documentViewCallback(var doc) {
+    this.widget.ud.docType = this.widget.ud.docURL = doc["url"];
+    this.widget.ud.title = doc["title"];
+    this.widget.ud.thumbnailURL = doc["thumbnail"];
+    this.widget.callback();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,7 +49,7 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
                   await _auth.signOut();
                 },
                 callbackHead: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                 },
               ),
               Container(
@@ -63,11 +71,7 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
                               thumbnailURL: doc["thumbnail"],
                               defaultThumbnail: this.widget.defaultThumbnail,
                               callback: () {
-                                this.widget.ud.docType =
-                                    this.widget.ud.docURL = doc["url"];
-                                this.widget.ud.title = doc["title"];
-                                this.widget.ud.thumbnailURL = doc["thumbnail"];
-                                this.widget.callback();
+                                documentViewCallback(doc);
                               },
                             )
                         ],

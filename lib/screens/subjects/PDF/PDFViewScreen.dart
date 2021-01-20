@@ -5,6 +5,7 @@ import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:get/get.dart';
 
 class PDFViewScreen extends StatefulWidget {
   UploadDocument ud;
@@ -56,7 +57,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.of(context).pop();
+                    Get.back();
                   },
                 ),
                 SizedBox(height: blockHeight),
@@ -131,12 +132,13 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
                 ),
                 SizedBox(height: blockHeight),
                 Center(
-                    child: CustomText(
-                  text: "Please swap to turn pages",
-                  color: Colors.black,
-                  size: blockWidth * 3.5,
-                  weight: FontWeight.w900,
-                )),
+                  child: CustomText(
+                    text: "Please swap to turn pages",
+                    color: Colors.black,
+                    size: blockWidth * 3.5,
+                    weight: FontWeight.w900,
+                  ),
+                ),
               ],
             ),
           ),

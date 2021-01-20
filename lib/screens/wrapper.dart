@@ -1,5 +1,5 @@
 import 'package:LoginSample/models/User.dart';
-import 'package:LoginSample/screens/authenticate/authenticate.dart';
+import 'package:LoginSample/screens/auth/authenticate.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

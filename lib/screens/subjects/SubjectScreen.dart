@@ -10,6 +10,7 @@ import 'package:LoginSample/screens/subjects/PDF/PDFViewScreen.dart';
 import 'package:LoginSample/screens/subjects/Video/VideoViewScreen.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SubjectScreen extends StatelessWidget {
   double blockWidth = SizeConfig.safeBlockHorizontal;
@@ -27,166 +28,128 @@ class SubjectScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.blueGrey[50],
         body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Positioned(
-                left: 0,
-                right: 0,
-                child: CustomAppbar(
-                  title: subject.subjectName,
-                  callbackTail: () async {
-                    await _auth.signOut();
-                  },
-                  callbackHead: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: blockHeight * 22.5),
-                child: (this.subject.pdfList.isEmpty &&
-                        this.subject.audioList.isEmpty &&
-                        this.subject.lmsList.isEmpty &&
-                        this.subject.videoList.isEmpty)
-                    ? Container(
-                        child: CustomNotificationCard(
-                          title: "No resluts found for " +
-                              this.subject.subjectName,
-                        ),
-                      )
-                    : Column(
-                        children: [
-                          (this.subject.pdfList.isNotEmpty)
-                              ? CustomSubjectDocCard(
-                                  title: "PDF",
-                                  imagePath: "assets/icons/pdf.png",
-                                  callback: () {
-                                    onClickPDF(context);
-                                  },
-                                )
-                              : Container(),
-                          (this.subject.videoList.isNotEmpty)
-                              ? CustomSubjectDocCard(
-                                  title: "Video",
-                                  imagePath: "assets/icons/video.png",
-                                  callback: () {
-                                    onClickVideo(context);
-                                  },
-                                )
-                              : Container(),
-                          (this.subject.audioList.isNotEmpty)
-                              ? CustomSubjectDocCard(
-                                  title: "Audio",
-                                  imagePath: "assets/icons/audio.png",
-                                  callback: () {
-                                    onClickAudio(context);
-                                  },
-                                )
-                              : Container(),
-                          (this.subject.lmsList.isNotEmpty)
-                              ? CustomSubjectDocCard(
-                                  title: "LMS",
-                                  imagePath: "assets/icons/lms.png",
-                                  callback: () {
-                                    onClickLMS(context);
-                                  },
-                                )
-                              : Container(),
-                        ],
+            child: Column(
+          children: [
+            CustomAppbar(
+              title: subject.subjectName,
+              callbackTail: () async {
+                await _auth.signOut();
+              },
+              callbackHead: () {
+                Get.back();
+              },
+            ),
+            Container(
+              margin: EdgeInsets.only(top: blockHeight * 0.5),
+              child: (this.subject.pdfList.isEmpty &&
+                      this.subject.audioList.isEmpty &&
+                      this.subject.lmsList.isEmpty &&
+                      this.subject.videoList.isEmpty)
+                  ? Container(
+                      child: CustomNotificationCard(
+                        title:
+                            "No resluts found for " + this.subject.subjectName,
                       ),
-              ),
-            ],
-          ),
-        ),
+                    )
+                  : Column(
+                      children: [
+                        (this.subject.pdfList.isNotEmpty)
+                            ? CustomSubjectDocCard(
+                                title: "PDF",
+                                imagePath: "assets/icons/pdf.png",
+                                callback: () {
+                                  onClickPDF(context);
+                                },
+                              )
+                            : Container(),
+                        (this.subject.videoList.isNotEmpty)
+                            ? CustomSubjectDocCard(
+                                title: "Video",
+                                imagePath: "assets/icons/video.png",
+                                callback: () {
+                                  onClickVideo(context);
+                                },
+                              )
+                            : Container(),
+                        (this.subject.audioList.isNotEmpty)
+                            ? CustomSubjectDocCard(
+                                title: "Audio",
+                                imagePath: "assets/icons/audio.png",
+                                callback: () {
+                                  onClickAudio(context);
+                                },
+                              )
+                            : Container(),
+                        (this.subject.lmsList.isNotEmpty)
+                            ? CustomSubjectDocCard(
+                                title: "LMS",
+                                imagePath: "assets/icons/lms.png",
+                                callback: () {
+                                  onClickLMS(context);
+                                },
+                              )
+                            : Container(),
+                      ],
+                    ),
+            ),
+          ],
+        )),
       ),
     );
   }
 
   void onClickPDF(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DocumentListScreen(
-          docList: this.subject.pdfList,
-          appBarTitle: "PDF",
-          defaultThumbnail: "assets/thumbnails/pdf.png",
-          ud: this.ud,
-          callback: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PDFViewScreen(ud: this.ud),
-              ),
-            );
-          },
-        ),
+    Get.to(
+      DocumentListScreen(
+        docList: this.subject.pdfList,
+        appBarTitle: "PDF",
+        defaultThumbnail: "assets/thumbnails/pdf.png",
+        ud: this.ud,
+        callback: () {
+          Get.to(PDFViewScreen(ud: this.ud));
+        },
       ),
     );
   }
 
   void onClickVideo(BuildContext context) {
-    Navigator.of(context).pop();
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DocumentListScreen(
-          docList: this.subject.videoList,
-          appBarTitle: "Video",
-          defaultThumbnail: "assets/thumbnails/video.png",
-          ud: this.ud,
-          callback: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => VideoViewScreen(ud: this.ud),
-              ),
-            );
-          },
-        ),
+    Get.to(
+      DocumentListScreen(
+        docList: this.subject.videoList,
+        appBarTitle: "Video",
+        defaultThumbnail: "assets/thumbnails/video.png",
+        ud: this.ud,
+        callback: () {
+          Get.to(VideoViewScreen(ud: this.ud));
+        },
       ),
     );
   }
 
   void onClickLMS(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DocumentListScreen(
-          docList: this.subject.lmsList,
-          appBarTitle: "LMS",
-          defaultThumbnail: "assets/thumbnails/lms.png",
-          ud: this.ud,
-          callback: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PDFViewScreen(ud: this.ud),
-              ),
-            );
-          },
-        ),
+    Get.to(
+      DocumentListScreen(
+        docList: this.subject.lmsList,
+        appBarTitle: "LMS",
+        defaultThumbnail: "assets/thumbnails/lms.png",
+        ud: this.ud,
+        callback: () {
+          Get.to(PDFViewScreen(ud: this.ud));
+        },
       ),
     );
   }
 
   void onClickAudio(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DocumentListScreen(
-          docList: this.subject.audioList,
-          appBarTitle: "Audio",
-          defaultThumbnail: "assets/thumbnails/audio.png",
-          ud: this.ud,
-          callback: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AudioViewScreen(ud: this.ud),
-              ),
-            );
-          },
-        ),
+    Get.to(
+      DocumentListScreen(
+        docList: this.subject.audioList,
+        appBarTitle: "Audio",
+        defaultThumbnail: "assets/thumbnails/audio.png",
+        ud: this.ud,
+        callback: () {
+          Get.to(AudioViewScreen(ud: this.ud));
+        },
       ),
     );
   }

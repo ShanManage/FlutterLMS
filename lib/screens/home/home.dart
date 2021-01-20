@@ -26,16 +26,12 @@ class Home extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Positioned(
-                left: 0,
-                right: 0,
-                child: CustomAppbar(
-                  title: "LMS",
-                  callbackTail: () async {
-                    await _auth.signOut();
-                  },
-                  callbackHead: null,
-                ),
+              CustomAppbar(
+                title: "LMS",
+                callbackTail: () async {
+                  await _auth.signOut();
+                },
+                callbackHead: null,
               ),
               Container(
                 height: blockHeight * 80,

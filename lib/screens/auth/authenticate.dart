@@ -1,4 +1,4 @@
-import 'package:LoginSample/screens/authenticate/sign_in.dart';
+import 'package:LoginSample/screens/auth/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {

@@ -7,6 +7,7 @@ import 'package:LoginSample/screens/subjects/SubjectScreen.dart';
 import 'package:LoginSample/services/databaseService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SubjectListScreen extends StatelessWidget {
   int grade;
@@ -19,6 +20,15 @@ class SubjectListScreen extends StatelessWidget {
   Stream subjectStream;
 
   Subject subject;
+  subjectCallBack(QueryDocumentSnapshot doc) {
+    subject = new Subject();
+    subject.subjectName = doc["subject"];
+    subject.pdfList = (doc["pdf"] != null) ? doc["pdf"] : null;
+    subject.videoList = (doc["video"] != null) ? doc["video"] : null;
+    subject.audioList = (doc["audio"] != null) ? doc["audio"] : null;
+    subject.lmsList = (doc["lms"] != null) ? doc["lms"] : null;
+    Get.to(SubjectScreen(subject: subject));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,18 +64,7 @@ class SubjectListScreen extends StatelessWidget {
             title: doc["subject"],
             height: blockHeight * 12.5,
             callback: () {
-              subject = new Subject();
-              subject.subjectName = doc["subject"];
-              subject.pdfList = (doc["pdf"] != null) ? doc["pdf"] : null;
-              subject.videoList = (doc["video"] != null) ? doc["video"] : null;
-              subject.audioList = (doc["audio"] != null) ? doc["audio"] : null;
-              subject.lmsList = (doc["lms"] != null) ? doc["lms"] : null;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SubjectScreen(subject: subject),
-                ),
-              );
+              subjectCallBack(doc);
             },
           ),
         )

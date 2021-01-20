@@ -63,13 +63,18 @@ class CustomDocCard extends StatelessWidget {
                     ),
               Container(
                 padding: EdgeInsets.all(blockWidth * 2),
-                child: Expanded(
-                  child: CustomText(
-                    text: title,
-                    color: Colors.blueGrey[900],
-                    size: blockHeight * 2,
-                    weight: FontWeight.w500,
-                  ),
+                child: Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    Expanded(
+                      child: CustomText(
+                        text: title,
+                        color: Colors.blueGrey[900],
+                        size: blockHeight * 2,
+                        weight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

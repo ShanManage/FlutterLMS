@@ -4,6 +4,7 @@ import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:chewie_audio/chewie_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class AudioViewScreen extends StatefulWidget {
@@ -80,7 +81,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).pop();
+                        Get.back();
                       },
                     ),
                     SizedBox(width: blockWidth * 5),
@@ -103,7 +104,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
                   image: DecorationImage(
                     image: (this.widget.ud.thumbnailURL != null)
                         ? NetworkImage(this.widget.ud.thumbnailURL.toString())
-                        : AssetImage("assets/sound.png"),
+                        : AssetImage("assets/audioCover.png"),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -126,7 +127,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
                         )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             CircularProgressIndicator(),
                             SizedBox(height: 20),
                             Text('Loading'),
