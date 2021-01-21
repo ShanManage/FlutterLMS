@@ -9,8 +9,10 @@ class CustomDropDownList extends StatefulWidget {
   String lable;
   String type;
   Color fillColor;
+  IconData prefixIcon;
   CustomDropDownList({
     @required this.list,
+    @required this.prefixIcon,
     this.rs,
     this.ud,
     this.lable,
@@ -40,9 +42,9 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(0, 5.5, 0, 0),
+        contentPadding: EdgeInsets.fromLTRB(15, 5.5, 0, 0),
         labelStyle: TextStyle(),
-        // labelText: this.widget.lable,
+        prefixIcon: Icon(this.widget.prefixIcon),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.all(Radius.circular(50.0)),
@@ -66,7 +68,7 @@ class _CustomDropDownListState extends State<CustomDropDownList> {
         border: InputBorder.none,
       ),
       items: this.widget.list,
-      value: getType(),
+      value: this.widget.list.first.value,
       onChanged: (value) {
         setState(() {
           if (this.widget.type == "rs") {

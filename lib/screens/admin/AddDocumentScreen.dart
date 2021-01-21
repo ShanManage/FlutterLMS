@@ -232,7 +232,6 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("add document screen render");
     return Container(
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
@@ -240,6 +239,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           SizedBox(height: blockHeight * 2.5),
           CustomDropDownList(
             list: _grades,
+            prefixIcon: Icons.school,
             lable: "grade",
             type: "ug",
             ud: document,
@@ -248,6 +248,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           SizedBox(height: blockHeight * 2.5),
           CustomDropDownList(
             list: _subjects,
+            prefixIcon: Icons.auto_stories,
             lable: "subject",
             type: "us",
             ud: document,
@@ -256,6 +257,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           SizedBox(height: blockHeight * 2.5),
           CustomDropDownList(
             list: _documentType,
+            prefixIcon: Icons.description,
             lable: "type",
             type: "ut",
             ud: document,
