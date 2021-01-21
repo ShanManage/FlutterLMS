@@ -24,34 +24,34 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.blueGrey[50],
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomAppbar(
-                title: "LMS",
-                callbackTail: () async {
-                  await _auth.signOut();
-                },
-                callbackHead: null,
-              ),
-              Container(
-                height: blockHeight * 80,
-                child: StreamBuilder(
-                  stream: _as.getGrade(user.uid),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData && snapshot.data.exists) {
-                      this.user.grade = snapshot.data["grade"];
-                      return Container(
+          child: Container(
+            child: StreamBuilder(
+              stream: _as.getGrade(user.uid),
+              builder: (context, snapshot) {
+                if (snapshot.hasData && snapshot.data.exists) {
+                  this.user.grade = snapshot.data["grade"];
+                  return Column(
+                    children: [
+                      CustomAppbar(
+                        title: "LMS",
+                        callbackTail: () async {
+                          await _auth.signOut();
+                        },
+                        callbackHead: null,
+                      ),
+                      Container(
+                        height: blockHeight * 80,
                         child: (this.user.grade == 0)
                             ? AdminScreen()
                             : SubjectListScreen(grade: this.user.grade),
-                      );
-                    } else {
-                      return CustomLoading();
-                    }
-                  },
-                ),
-              ),
-            ],
+                      ),
+                    ],
+                  );
+                } else {
+                  return CustomLoading();
+                }
+              },
+            ),
           ),
         ),
       ),
