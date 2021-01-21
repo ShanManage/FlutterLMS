@@ -33,7 +33,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
   Widget build(BuildContext context) {
     student.registerGrade = _grades.first.value;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+      padding: EdgeInsets.symmetric(vertical: 120.0, horizontal: 30.0),
       child: Form(
         key: _formKey,
         child: Column(
@@ -44,7 +44,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
               isPass: false,
               fieldController: userNameController,
               prefixIcon: Icons.person,
-              fillColor: Colors.brown[50],
+              fillColor: Colors.deepPurple[100],
             ),
             SizedBox(height: blockHeight * 2.5),
             CustomFormField(
@@ -52,7 +52,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
               isPass: true,
               fieldController: passController,
               prefixIcon: Icons.lock,
-              fillColor: Colors.brown[50],
+              fillColor: Colors.deepPurple[100],
             ),
             SizedBox(height: blockHeight * 2.5),
             CustomDropDownList(
@@ -60,13 +60,13 @@ class _AddUserScreenState extends State<AddUserScreen> {
               lable: "grade",
               type: "rs",
               rs: student,
-              fillColor: Colors.brown[50],
+              fillColor: Colors.deepPurple[100],
             ),
             SizedBox(height: blockHeight * 2.5),
             CustomButton(
               title: "Create User",
-              bgColor: Colors.green[200],
-              textColor: Colors.black,
+              bgColor: Colors.deepPurple[800],
+              textColor: Colors.white,
               callback: () async {
                 onClickAddUser();
               },

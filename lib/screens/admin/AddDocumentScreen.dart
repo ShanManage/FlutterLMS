@@ -235,81 +235,67 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
     print("add document screen render");
     return Container(
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
         child: Column(children: [
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: CustomText(
-                text: "AdminDashboard",
-                color: Colors.black,
-              ),
-            ),
+          SizedBox(height: blockHeight * 2.5),
+          CustomDropDownList(
+            list: _grades,
+            lable: "grade",
+            type: "ug",
+            ud: document,
+            fillColor: Colors.deepPurple[100],
           ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: CustomDropDownList(
-                list: _grades,
-                lable: "grade",
-                type: "ug",
-                ud: document,
-              ),
-            ),
+          SizedBox(height: blockHeight * 2.5),
+          CustomDropDownList(
+            list: _subjects,
+            lable: "subject",
+            type: "us",
+            ud: document,
+            fillColor: Colors.deepPurple[100],
           ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: CustomDropDownList(
-                list: _subjects,
-                lable: "subject",
-                type: "us",
-                ud: document,
-              ),
-            ),
+          SizedBox(height: blockHeight * 2.5),
+          CustomDropDownList(
+            list: _documentType,
+            lable: "type",
+            type: "ut",
+            ud: document,
+            fillColor: Colors.deepPurple[100],
           ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: CustomDropDownList(
-                list: _documentType,
-                lable: "type",
-                type: "ut",
-                ud: document,
-              ),
-            ),
-          ),
+          SizedBox(height: blockHeight * 2.5),
           CustomFormField(
             hintText: "title",
             isPass: false,
             fieldController: titleController,
             prefixIcon: Icons.keyboard,
-            fillColor: Colors.blue[100],
+            fillColor: Colors.deepPurple[100],
           ),
           SizedBox(height: 20.0),
           Row(
             children: [
-              CustomButton(
-                title: "Pick a document",
-                bgColor: Colors.green[800],
-                textColor: Colors.white,
-                width: blockWidth * 46,
-                height: blockHeight * 5,
-                fontSize: blockHeight * 2.5,
-                callback: () {
-                  pickFile(isDocument);
-                },
+              Expanded(
+                child: CustomButton(
+                  title: "Pick a document",
+                  bgColor: Colors.green[800],
+                  textColor: Colors.white,
+                  height: blockHeight * 4,
+                  fontSize: blockHeight * 2,
+                  callback: () {
+                    pickFile(isDocument);
+                  },
+                ),
               ),
-              CustomButton(
-                title: "Pick a thumbnail",
-                bgColor: Colors.green[800],
-                textColor: Colors.white,
-                width: blockWidth * 46,
-                height: blockHeight * 5,
-                fontSize: blockHeight * 2.5,
-                callback: () {
-                  pickFile(!isDocument);
-                },
+              SizedBox(width: 10.0,),
+              Expanded(
+                child: CustomButton(
+                  title: "Pick a thumbnail",
+                  bgColor: Colors.green[800],
+                  textColor: Colors.white,
+                  height: blockHeight * 4,
+                  fontSize: blockHeight * 2,
+                  callback: () {
+                    pickFile(!isDocument);
+                  },
+                ),
               ),
             ],
           ),
@@ -317,7 +303,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           (isUpload == true)
               ? CustomButton(
                   title: "Upload Document",
-                  bgColor: Colors.blue[800],
+                  bgColor: Colors.deepPurple[800],
                   textColor: Colors.white,
                   callback: () {
                     onClickUpload();

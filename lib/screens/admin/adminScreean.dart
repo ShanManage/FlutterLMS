@@ -1,3 +1,4 @@
+import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/admin/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/AddUserScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
@@ -13,40 +14,46 @@ class _AdminScreenState extends State<AdminScreen>
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
 
-  TabController _controller;
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    AddUserScreen(),
+    AddDocumentScreen(),
+  ];
+  // TabController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = new TabController(length: 2, vsync: this);
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.brown[100],
+        margin: EdgeInsets.only(top: blockHeight * 0.5),
+        color: Colors.blueGrey[50],
         child: Column(
           children: [
             Container(
-              height: 50.0,
-              color: Colors.brown[300],
-              child: TabBar(
-                isScrollable: true,
-                indicatorSize: TabBarIndicatorSize.label,
-                labelPadding: EdgeInsets.symmetric(horizontal: blockHeight * 8),
-                controller: _controller,
-                tabs: [
-                  Tab(text: "Add User"),
-                  Tab(text: "Add Document"),
-                ],
-              ),
+              height: blockHeight * 73,
+              child: _children[_currentIndex],
             ),
             Container(
-              height: 650.0,
-              child: TabBarView(
-                controller: _controller,
-                children: [AddUserScreen(), AddDocumentScreen()],
+              child: BottomNavigationBar(
+                backgroundColor: Colors.blueGrey[100],
+                onTap: onTabTapped,
+                currentIndex: _currentIndex,
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person_add),
+                    label: "Add User",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.note_add),
+                    label: "Add Document",
+                  ),
+                ],
               ),
             ),
           ],
