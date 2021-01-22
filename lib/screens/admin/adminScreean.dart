@@ -1,5 +1,6 @@
 import 'package:LoginSample/screens/admin/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/AddUserScreen.dart';
+import 'package:LoginSample/screens/admin/gradeListScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class _AdminScreenState extends State<AdminScreen>
   final List<Widget> _children = [
     AddUserScreen(),
     AddDocumentScreen(),
+    GradeListScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -42,14 +44,19 @@ class _AdminScreenState extends State<AdminScreen>
                 backgroundColor: Colors.blueGrey[100],
                 onTap: onTabTapped,
                 currentIndex: _currentIndex,
+                fixedColor: Colors.deepPurple[600],
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_add),
-                    label: "Add User",
+                    label: "Add student",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.note_add),
                     label: "Add Document",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person_search),
+                    label: "All students",
                   ),
                 ],
               ),
