@@ -1,12 +1,9 @@
 import 'dart:io';
-
 import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class DatabaseService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final firestoreInstance = FirebaseFirestore.instance;
   final storageInstance = FirebaseStorage.instance;
 
@@ -15,8 +12,7 @@ class DatabaseService {
     try {
       snapshot = firestoreInstance.collection(grade.toString()).snapshots();
     } catch (e) {
-      print(" ERROR WHILE GETTING DATA : " + e.toString());
-      print(" ERROR ON GRADE : " + grade.toString());
+      print(" ERROR WHILE GETTING DATA (SUBJECTS): " + e.toString());
     }
 
     return snapshot;
@@ -25,9 +21,10 @@ class DatabaseService {
   Stream<dynamic> getGrades() {
     Stream<QuerySnapshot> snapshot;
     try {
-      snapshot = firestoreInstance.collection('grades').snapshots();
+      snapshot =
+          firestoreInstance.collection('grades').orderBy("grade").snapshots();
     } catch (e) {
-      print(" ERROR WHILE GETTING DATA : " + e.toString());
+      print("ERROR WHILE GETTING DATA (GRADES) : " + e.toString());
     }
 
     return snapshot;
@@ -36,9 +33,12 @@ class DatabaseService {
   Stream<dynamic> getStudents(int grade) {
     Stream<QuerySnapshot> snapshot;
     try {
-      snapshot = firestoreInstance.collection('users').where("grade", isEqualTo: grade).snapshots();
+      snapshot = firestoreInstance
+          .collection('users')
+          .where("grade", isEqualTo: grade)
+          .snapshots();
     } catch (e) {
-      print(" ERROR WHILE GETTING DATA : " + e.toString());
+      print(" ERROR WHILE GETTING DATA (STUDENTS): " + e.toString());
     }
 
     return snapshot;
@@ -62,13 +62,11 @@ class DatabaseService {
   }
 
   changeAccess(String id, bool isEnable) async {
-    try{
+    try {
       await firestoreInstance.collection('users').doc(id).update({
-        'isEnable' : isEnable,
+        'isEnable': isEnable,
       });
-    } catch(e){
-
-    }
+    } catch (e) {}
   }
 
   Future<String> uploadFile(File file, String filename, String filePath) async {

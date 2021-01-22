@@ -12,13 +12,11 @@ import 'package:get/get.dart';
 
 class StudentsListScreen extends StatefulWidget {
   int grade;
-  String strGrade;
-  Stream students;
+  StudentsListScreen({@required this.grade});
+
   DatabaseService _ds = DatabaseService();
 
   final titleController = TextEditingController();
-
-  StudentsListScreen({@required this.grade, @required this.strGrade});
 
   @override
   _StudentsListScreenState createState() => _StudentsListScreenState();
@@ -29,6 +27,7 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
   double blockWidth = SizeConfig.safeBlockHorizontal;
 
   DatabaseService dbService = DatabaseService();
+  Stream students;
 
   onToggle(String id, bool isEnable) {
     dbService.changeAccess(id, isEnable);
@@ -37,14 +36,14 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
-    this.widget.students = this.widget._ds.getStudents(this.widget.grade);
+    students = this.widget._ds.getStudents(this.widget.grade);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.blueGrey[50],
         body: Column(
           children: [
             CustomAppbar(
-              title: this.widget.strGrade,
+              title: "Grade " + this.widget.grade.toString(),
               callbackTail: () async {
                 await _auth.signOut();
               },
@@ -53,7 +52,7 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
               },
             ),
             StreamBuilder<QuerySnapshot>(
-              stream: this.widget.students,
+              stream: students,
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -64,8 +63,9 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
                       children: [
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: blockWidth * 3,
-                              vertical: blockHeight * 2),
+                            horizontal: blockWidth * 3,
+                            vertical: blockHeight * 1.5,
+                          ),
                           margin: EdgeInsets.only(top: blockHeight),
                           child: CustomFormField(
                             hintText: "search",
@@ -77,7 +77,7 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
                         ),
                         SingleChildScrollView(
                           child: Container(
-                            height: blockHeight * 69,
+                            height: blockHeight * 68,
                             child: ListView(
                               scrollDirection: Axis.vertical,
                               children: loadStudents(snapshot, context),
@@ -105,7 +105,6 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
         .map(
           (doc) => CustomStudentsCard(
             title: doc['userName'],
-            height: blockHeight * 9,
             toggleValue: doc['isEnable'],
             callback: () {
               onToggle(doc['id'], !doc['isEnable']);

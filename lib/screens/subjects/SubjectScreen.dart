@@ -46,9 +46,14 @@ class SubjectScreen extends StatelessWidget {
                       this.subject.lmsList.isEmpty &&
                       this.subject.videoList.isEmpty)
                   ? Container(
-                      child: CustomNotificationCard(
-                        title:
-                            "No resluts found for " + this.subject.subjectName,
+                      child: Flex(
+                        direction: Axis.vertical,
+                        children: [
+                          CustomNotificationCard(
+                            title: "No resluts found for " +
+                                this.subject.subjectName,
+                          ),
+                        ],
                       ),
                     )
                   : Column(

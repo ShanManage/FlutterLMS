@@ -42,7 +42,7 @@ class CustomGradeCard extends StatelessWidget {
                     text: title,
                     color: Colors.deepPurple[500],
                     size: blockHeight * 3,
-                    weight: FontWeight.w700,
+                    weight: FontWeight.w400,
                   ),
                 ),
                 IconButton(

@@ -4,7 +4,6 @@ import 'package:LoginSample/screens/CustomWidgets/CustomButton.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomDropDownList.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/databaseService.dart';
 import 'package:flutter/material.dart';
@@ -286,7 +285,9 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                   },
                 ),
               ),
-              SizedBox(width: 10.0,),
+              SizedBox(
+                width: 10.0,
+              ),
               Expanded(
                 child: CustomButton(
                   title: "Pick a thumbnail",

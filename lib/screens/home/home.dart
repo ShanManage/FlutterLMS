@@ -1,5 +1,4 @@
 import 'package:LoginSample/models/User.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/admin/adminScreean.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
@@ -8,7 +7,6 @@ import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-  final AuthService _auth = AuthService();
   final LocalUser user;
 
   Home({this.user});
@@ -16,7 +14,7 @@ class Home extends StatelessWidget {
   double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;
 
-  AuthService _as = AuthService();
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +23,15 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.blueGrey[50],
         body: SingleChildScrollView(
           child: StreamBuilder(
-            stream: _as.getGrade(user.uid),
+            stream: _auth.getGrade(user.uid),
             builder: (context, snapshot) {
               if (snapshot.hasData && snapshot.data.exists) {
                 this.user.grade = snapshot.data["grade"];
                 return Column(
                   children: [
-                    CustomAppbar(
-                      title:
-                          (this.user.grade == 0) ? "DASHBOARD" : "LMS",
-                      callbackTail: () async {
-                        await _auth.signOut();
-                      },
-                      callbackHead: null,
-                    ),
                     Container(
-                      height: blockHeight * 80,
+                      width: double.infinity,
+                      height: blockHeight * 100,
                       child: Container(
                         child: (this.user.grade == 0)
                             ? AdminScreen()
