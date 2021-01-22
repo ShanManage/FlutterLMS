@@ -64,7 +64,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
                   icon: Icon(
                     (isHide == true) ? Icons.visibility : Icons.visibility_off,
                   ),
-                  onPressed: () {
+                  onPressed: () { 
                     setState(() {
                       isHide = !isHide;
                     });
