@@ -27,6 +27,13 @@ class StudentsListScreen extends StatefulWidget {
 class _StudentsListScreenState extends State<StudentsListScreen> {
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
+
+  DatabaseService dbService = DatabaseService();
+
+  onToggle(String id, bool isEnable) {
+    dbService.changeAccess(id, isEnable);
+  }
+
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
@@ -41,12 +48,11 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
               callbackTail: () async {
                 await _auth.signOut();
               },
-              callbackHead: (){
+              callbackHead: () {
                 Get.back();
               },
             ),
-            SingleChildScrollView(
-                child: StreamBuilder<QuerySnapshot>(
+            StreamBuilder<QuerySnapshot>(
               stream: this.widget.students,
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -60,7 +66,7 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
                           padding: EdgeInsets.symmetric(
                               horizontal: blockWidth * 3,
                               vertical: blockHeight * 2),
-                              margin: EdgeInsets.only(top: blockHeight),
+                          margin: EdgeInsets.only(top: blockHeight),
                           child: CustomFormField(
                             hintText: "search",
                             isPass: false,
@@ -69,24 +75,25 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
                             fillColor: Colors.blueGrey[100],
                           ),
                         ),
-                        Container(
-                          height: blockHeight * 69,
-                          child: ListView(
-                            scrollDirection: Axis.vertical,
-                            children: loadStudents(snapshot, context),
+                        SingleChildScrollView(
+                          child: Container(
+                            height: blockHeight * 69,
+                            child: ListView(
+                              scrollDirection: Axis.vertical,
+                              children: loadStudents(snapshot, context),
+                            ),
                           ),
                         ),
                       ],
                     );
                   } else {
                     return CustomNotificationCard(
-                      title:
-                          "No Students registered for this grade",
+                      title: "No Students registered for this grade",
                     );
                   }
                 }
               },
-            )),
+            ),
           ],
         ),
       ),
@@ -100,8 +107,9 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
             title: doc['userName'],
             height: blockHeight * 9,
             toggleValue: doc['isEnable'],
-            id: doc['id'],
-            callback: () {},
+            callback: () {
+              onToggle(doc['id'], !doc['isEnable']);
+            },
           ),
         )
         .toList();

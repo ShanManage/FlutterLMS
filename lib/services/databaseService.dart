@@ -63,7 +63,7 @@ class DatabaseService {
 
   changeAccess(String id, bool isEnable) async {
     try{
-      await firestoreInstance.collection('users').doc(id).set({
+      await firestoreInstance.collection('users').doc(id).update({
         'isEnable' : isEnable,
       });
     } catch(e){

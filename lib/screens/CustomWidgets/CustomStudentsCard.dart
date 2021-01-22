@@ -2,19 +2,18 @@ import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class CustomStudentsCard extends StatefulWidget {
   String title;
   final VoidCallback callback;
   double height;
   bool toggleValue;
-  String id;
 
   CustomStudentsCard({
     @required this.title,
     @required this.callback,
     @required this.toggleValue,
-    @required this.id,
     this.height,
   });
 
@@ -31,8 +30,7 @@ class _CustomStudentsCardState extends State<CustomStudentsCard> {
     return InkWell(
       child: Container(
         child: Container(
-          padding: EdgeInsets.symmetric(
-              vertical: blockHeight * 1, horizontal: blockWidth * 5),
+          padding: EdgeInsets.symmetric(horizontal: blockWidth * 5),
           width: double.infinity,
           height: (this.widget.height == null)
               ? blockHeight * 12
@@ -69,6 +67,7 @@ class _CustomStudentsCardState extends State<CustomStudentsCard> {
                   onToggle: (val) {
                     setState(() {
                       this.widget.toggleValue = val;
+                      this.widget.callback();
                     });
                   },
                 ),
