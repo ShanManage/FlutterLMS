@@ -1,5 +1,6 @@
 import 'package:LoginSample/screens/admin/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/AddUserScreen.dart';
+import 'package:LoginSample/screens/admin/addSubjectScreen.dart';
 import 'package:LoginSample/screens/admin/gradeListScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _AdminScreenState extends State<AdminScreen>
     AddUserScreen(),
     AddDocumentScreen(),
     GradeListScreen(),
+    AddSubjectScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -57,6 +59,10 @@ class _AdminScreenState extends State<AdminScreen>
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_search),
                     label: "All students",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.auto_stories),
+                    label: "Add subject",
                   ),
                 ],
               ),
