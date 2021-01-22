@@ -22,6 +22,28 @@ class DatabaseService {
     return snapshot;
   }
 
+  Stream<dynamic> getGrades() {
+    Stream<QuerySnapshot> snapshot;
+    try {
+      snapshot = firestoreInstance.collection('grades').snapshots();
+    } catch (e) {
+      print(" ERROR WHILE GETTING DATA : " + e.toString());
+    }
+
+    return snapshot;
+  }
+
+  Stream<dynamic> getStudents(int grade) {
+    Stream<QuerySnapshot> snapshot;
+    try {
+      snapshot = firestoreInstance.collection('users').where("grade", isEqualTo: grade).snapshots();
+    } catch (e) {
+      print(" ERROR WHILE GETTING DATA : " + e.toString());
+    }
+
+    return snapshot;
+  }
+
   insertDocument(UploadDocument ud) async {
     try {
       await firestoreInstance
@@ -36,6 +58,16 @@ class DatabaseService {
     } catch (e) {
       print("ERROR WHILE UPLOADING DATA : " + e.toString());
       print("DOCUMENT : " + ud.toString());
+    }
+  }
+
+  changeAccess(String id, bool isEnable) async {
+    try{
+      await firestoreInstance.collection('users').doc(id).update({
+        'isEnable' : isEnable,
+      });
+    } catch(e){
+
     }
   }
 

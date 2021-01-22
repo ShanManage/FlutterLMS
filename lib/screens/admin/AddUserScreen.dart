@@ -57,6 +57,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
             SizedBox(height: blockHeight * 2.5),
             CustomDropDownList(
               list: _grades,
+              prefixIcon: Icons.school,
               lable: "grade",
               type: "rs",
               rs: student,

@@ -32,7 +32,8 @@ class Home extends StatelessWidget {
                 return Column(
                   children: [
                     CustomAppbar(
-                      title: (this.user.grade == 0) ? "ADMIN DASHBOARD" : "LMS",
+                      title:
+                          (this.user.grade == 0) ? "DASHBOARD" : "LMS",
                       callbackTail: () async {
                         await _auth.signOut();
                       },

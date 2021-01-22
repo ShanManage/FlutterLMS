@@ -1,6 +1,6 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/admin/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/AddUserScreen.dart';
+import 'package:LoginSample/screens/admin/gradeListScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +18,8 @@ class _AdminScreenState extends State<AdminScreen>
   final List<Widget> _children = [
     AddUserScreen(),
     AddDocumentScreen(),
+    GradeListScreen(),
   ];
-  // TabController _controller;
 
   void onTabTapped(int index) {
     setState(() {
@@ -31,12 +31,12 @@ class _AdminScreenState extends State<AdminScreen>
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.only(top: blockHeight * 0.5),
+        margin: EdgeInsets.only(top: blockHeight * 4.5),
         color: Colors.blueGrey[50],
         child: Column(
           children: [
             Container(
-              height: blockHeight * 73,
+              height: blockHeight * 69,
               child: _children[_currentIndex],
             ),
             Container(
@@ -44,14 +44,19 @@ class _AdminScreenState extends State<AdminScreen>
                 backgroundColor: Colors.blueGrey[100],
                 onTap: onTabTapped,
                 currentIndex: _currentIndex,
+                fixedColor: Colors.deepPurple[600],
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_add),
-                    label: "Add User",
+                    label: "Add student",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.note_add),
                     label: "Add Document",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person_search),
+                    label: "All students",
                   ),
                 ],
               ),
