@@ -2,7 +2,7 @@ import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
-import 'package:LoginSample/screens/CustomWidgets/CustomStudentsCard.dart';
+import 'package:LoginSample/screens/admin/CustomWidgets/CustomStudentsCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:LoginSample/services/databaseService.dart';
