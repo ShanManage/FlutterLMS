@@ -2,6 +2,7 @@ import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/admin/SubjectManagement/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/UserManagement/AddUserScreen.dart';
 import 'package:LoginSample/screens/admin/UserManagement/gradeListScreen.dart';
+import 'package:LoginSample/screens/admin/addSubjectScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _AdminScreenState extends State<AdminScreen>
     AddUserScreen(),
     AddDocumentScreen(),
     GradeListScreen(),
+    AddSubjectScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -62,40 +64,30 @@ class _AdminScreenState extends State<AdminScreen>
               },
               callbackHead: null,
             ),
-            SingleChildScrollView(
-              child: Container(
-                margin: EdgeInsets.only(top: blockHeight),
-                child: Column(
-                  children: [
-                    Container(
-                      height: blockHeight * 70,
-                      child: _children[_currentIndex],
-                    ),
-                    Container(
-                      height: blockHeight * 9,
-                      child: BottomNavigationBar(
-                        backgroundColor: Colors.blueGrey[100],
-                        onTap: onTabTapped,
-                        currentIndex: _currentIndex,
-                        fixedColor: Colors.deepPurple[700],
-                        items: [
-                          BottomNavigationBarItem(
-                            icon: Icon(Icons.person_add),
-                            label: "Users ",
-                          ),
-                          BottomNavigationBarItem(
-                            icon: Icon(Icons.note_add),
-                            label: "Subjects ",
-                          ),
-                          BottomNavigationBarItem(
-                            icon: Icon(Icons.person_search),
-                            label: "All",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+            Container(
+              child: BottomNavigationBar(
+                backgroundColor: Colors.blueGrey[100],
+                onTap: onTabTapped,
+                currentIndex: _currentIndex,
+                fixedColor: Colors.deepPurple[600],
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person_add),
+                    label: "Students",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.note_add),
+                    label: "Subjects",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person_search),
+                    label: "All",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.auto_stories),
+                    label: "Add subject",
+                  ),
+                ],
               ),
             ),
           ],

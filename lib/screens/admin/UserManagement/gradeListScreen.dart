@@ -1,4 +1,4 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomGradeCard.dart';
+import 'package:LoginSample/screens/admin/CustomWidgets/CustomGradeCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
 import 'package:LoginSample/screens/admin/UserManagement/studentsListScreen.dart';
