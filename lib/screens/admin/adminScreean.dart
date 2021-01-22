@@ -2,7 +2,7 @@ import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/admin/SubjectManagement/AddDocumentScreen.dart';
 import 'package:LoginSample/screens/admin/UserManagement/AddUserScreen.dart';
 import 'package:LoginSample/screens/admin/UserManagement/gradeListScreen.dart';
-import 'package:LoginSample/screens/admin/addSubjectScreen.dart';
+import 'package:LoginSample/screens/admin/SubjectManagement/addSubjectScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,9 @@ class _AdminScreenState extends State<AdminScreen>
       case 2:
         title = "All";
         break;
-      default:
+      case 3:
+        title = "Add Subject";
+        break;
     }
     return title;
   }
