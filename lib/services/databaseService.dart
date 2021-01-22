@@ -61,17 +61,21 @@ class DatabaseService {
     }
   }
 
-  insertSubject(UploadDocument ud) async{
+  insertSubject(UploadDocument ud) async {
     List empty = List.empty();
-    try{
-      await firestoreInstance.collection(ud.docGrade.toString()).doc(ud.docSubject.toString()).set({
-        'audio' : empty,
-        'video' : empty,
-        'pdf' : empty,
-        'lms' : empty,
-        'subject' : ud.docSubject.toString(),
+
+    try {
+      await firestoreInstance
+          .collection(ud.docGrade.toString())
+          .doc(ud.docSubject.toString())
+          .set({
+        'audio': empty,
+        'video': empty,
+        'pdf': empty,
+        'lms': empty,
+        'subject': ud.docSubject.toString(),
       });
-    } catch(e) {}
+    } catch (e) {}
   }
 
   changeAccess(String id, bool isEnable) async {

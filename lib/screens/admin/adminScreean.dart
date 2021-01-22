@@ -89,6 +89,10 @@ class _AdminScreenState extends State<AdminScreen>
                     icon: Icon(Icons.auto_stories),
                     label: "Add subject",
                   ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.auto_stories),
+                    label: "Add subject",
+                  ),
                 ],
               ),
             ),
