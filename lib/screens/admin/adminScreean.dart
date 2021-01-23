@@ -67,11 +67,16 @@ class _AdminScreenState extends State<AdminScreen>
               callbackHead: null,
             ),
             Container(
+              height: blockHeight * 72.5,
+              child: _children[_currentIndex],
+            ),
+            Container(
+              color: Colors.black,
+              height: blockHeight * 7.5,
               child: BottomNavigationBar(
-                backgroundColor: Colors.blueGrey[100],
                 onTap: onTabTapped,
-                currentIndex: _currentIndex,
-                fixedColor: Colors.deepPurple[600],
+                backgroundColor: Colors.black,
+                selectedItemColor: Colors.deepPurple[600],
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_add),
@@ -84,10 +89,6 @@ class _AdminScreenState extends State<AdminScreen>
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_search),
                     label: "All",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.auto_stories),
-                    label: "Add subject",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.auto_stories),
