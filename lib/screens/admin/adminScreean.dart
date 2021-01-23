@@ -1,8 +1,10 @@
-import 'package:LoginSample/screens/admin/AddDocumentScreen.dart';
-import 'package:LoginSample/screens/admin/AddUserScreen.dart';
-import 'package:LoginSample/screens/admin/addSubjectScreen.dart';
-import 'package:LoginSample/screens/admin/gradeListScreen.dart';
+import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
+import 'package:LoginSample/screens/admin/SubjectManagement/AddDocumentScreen.dart';
+import 'package:LoginSample/screens/admin/UserManagement/AddUserScreen.dart';
+import 'package:LoginSample/screens/admin/UserManagement/gradeListScreen.dart';
+import 'package:LoginSample/screens/admin/SubjectManagement/addSubjectScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
+import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -14,6 +16,8 @@ class _AdminScreenState extends State<AdminScreen>
     with SingleTickerProviderStateMixin {
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
+
+  final AuthService _auth = AuthService();
 
   int _currentIndex = 0;
   final List<Widget> _children = [
@@ -29,17 +33,38 @@ class _AdminScreenState extends State<AdminScreen>
     });
   }
 
+  String getAppbarTitle(int index) {
+    String title;
+    switch (index) {
+      case 0:
+        title = "Users";
+        break;
+      case 1:
+        title = "Subjects";
+        break;
+      case 2:
+        title = "All";
+        break;
+      case 3:
+        title = "Add Subject";
+        break;
+    }
+    return title;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.only(top: blockHeight * 4.5),
-        color: Colors.blueGrey[50],
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.blueGrey[50],
+        body: Column(
           children: [
-            Container(
-              height: blockHeight * 69,
-              child: _children[_currentIndex],
+            CustomAppbar(
+              title: getAppbarTitle(_currentIndex),
+              callbackTail: () async {
+                await _auth.signOut();
+              },
+              callbackHead: null,
             ),
             Container(
               child: BottomNavigationBar(
@@ -50,15 +75,19 @@ class _AdminScreenState extends State<AdminScreen>
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_add),
-                    label: "Add student",
+                    label: "Students",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.note_add),
-                    label: "Add Document",
+                    label: "Subjects",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person_search),
-                    label: "All students",
+                    label: "All",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.auto_stories),
+                    label: "Add subject",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.auto_stories),

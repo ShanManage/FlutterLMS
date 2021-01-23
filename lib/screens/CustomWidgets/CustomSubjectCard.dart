@@ -31,10 +31,10 @@ class CustomSubjectCard extends StatelessWidget {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 30,
-                  spreadRadius: 2,
-                )
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 30,
+                    spreadRadius: 2,
+                    offset: Offset(0.0, 20.0))
               ],
               borderRadius: BorderRadius.all(
                 Radius.circular(20.0),

@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 class CustomNotificationCard extends StatelessWidget {
   String title;
   IconData cardIcon;
-  double height, width;
-  CustomNotificationCard(
-      {@required this.title, this.cardIcon, this.height, this.width});
+  CustomNotificationCard({@required this.title, this.cardIcon});
 
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
@@ -17,8 +15,6 @@ class CustomNotificationCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: blockHeight * 1.5, horizontal: blockWidth * 5),
-      width: (width != null) ? width : double.infinity,
-      height: (height == null) ? blockHeight * 25 : height,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: blockWidth * 7.5,

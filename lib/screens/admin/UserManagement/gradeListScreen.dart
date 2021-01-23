@@ -1,7 +1,7 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomGradeCard.dart';
+import 'package:LoginSample/screens/admin/CustomWidgets/CustomGradeCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
-import 'package:LoginSample/screens/admin/studentsListScreen.dart';
+import 'package:LoginSample/screens/admin/UserManagement/studentsListScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/databaseService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,11 +16,8 @@ class GradeListScreen extends StatelessWidget {
   DatabaseService _ds = DatabaseService();
   Stream gradeStream;
 
-  gradeCallBack(int grade, String strGrade) {
-    Get.to(StudentsListScreen(
-      grade: grade,
-      strGrade: strGrade,
-    ));
+  gradeCallBack(int grade) {
+    Get.to(StudentsListScreen(grade: grade));
   }
 
   @override
@@ -33,21 +30,16 @@ class GradeListScreen extends StatelessWidget {
           return CustomLoading();
         } else {
           if (snapshot.hasData && snapshot.data.size != 0) {
-            return Column(
-              children: [
-                Container(
-                  height: blockHeight * 69,
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: loadGrades(snapshot, context),
-                  ),
-                ),
-              ],
+            return Container(
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: loadGrades(snapshot, context),
+              ),
             );
           } else {
             return CustomNotificationCard(
               title:
-                  "Something went wrong.. Plese restart the app after few minutes",
+                  "Something went wrong... Plese restart the app after few minutes",
             );
           }
         }
@@ -59,10 +51,10 @@ class GradeListScreen extends StatelessWidget {
     return snapshot.data.docs
         .map(
           (doc) => CustomGradeCard(
-            title: doc['name'].toString(),
-            height: blockHeight * 10.3,
+            title: "Grade  " + doc['grade'].toString(),
+            height: blockHeight * 12.5,
             callback: () {
-              gradeCallBack(doc['intName'], doc['name']);
+              gradeCallBack(doc['grade']);
             },
           ),
         )
