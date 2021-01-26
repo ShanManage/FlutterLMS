@@ -1,7 +1,7 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomFormField.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
+import 'package:LoginSample/screens/admin/CustomWidgets/CustomAdminAppbar.dart';
 import 'package:LoginSample/screens/admin/CustomWidgets/CustomStudentsCard.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
@@ -42,7 +42,7 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
         backgroundColor: Colors.blueGrey[50],
         body: Column(
           children: [
-            CustomAppbar(
+            CustomAdminAppbar(
               title: "Grade " + this.widget.grade.toString(),
               callbackTail: () async {
                 await _auth.signOut();

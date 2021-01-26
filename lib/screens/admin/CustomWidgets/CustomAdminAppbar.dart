@@ -3,10 +3,10 @@ import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppbar extends StatelessWidget {
+class CustomAdminAppbar extends StatelessWidget {
   String title;
   VoidCallback callbackHead, callbackTail;
-  CustomAppbar({
+  CustomAdminAppbar({
     @required this.title,
     this.callbackHead,
     @required this.callbackTail,
@@ -18,7 +18,7 @@ class CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: blockHeight * 20,
+      height: blockHeight * 10,
       decoration: BoxDecoration(
         color: Colors.transparent,
         image: DecorationImage(
@@ -39,40 +39,35 @@ class CustomAppbar extends StatelessWidget {
       ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: blockWidth * 5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                (callbackHead != null)
-                    ? CustomIconButton(
-                        icon: Icons.arrow_back,
-                        callback: () {
-                          callbackHead();
-                        },
-                      )
-                    : Container(
-                        width: blockWidth * 7,
-                      ),
-                (callbackTail != null)
-                    ? CustomIconButton(
-                        icon: Icons.more_vert,
-                        callback: () {
-                          callbackTail();
-                        },
-                      )
-                    : Container(
-                        width: blockWidth * 7,
-                      ),
-              ],
-            ),
+            (callbackHead != null)
+                ? CustomIconButton(
+                    icon: Icons.arrow_back,
+                    callback: () {
+                      callbackHead();
+                    },
+                  )
+                : Container(
+                    width: blockWidth * 7,
+                  ),
             CustomText(
               text: title,
-              size: blockHeight * 5,
+              size: blockHeight * 4,
               weight: FontWeight.w600,
               color: Colors.black,
             ),
+            (callbackTail != null)
+                ? CustomIconButton(
+                    icon: Icons.more_vert,
+                    callback: () {
+                      callbackTail();
+                    },
+                  )
+                : Container(
+                    width: blockWidth * 7,
+                  ),
           ],
         ),
       ),

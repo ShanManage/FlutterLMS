@@ -29,10 +29,10 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
 
     document.docSubject = subjectController.text;
 
-    if(document.docGrade != null && document.docSubject.isNotEmpty){
-      try{
+    if (document.docGrade != null && document.docSubject.isNotEmpty) {
+      try {
         dbService.insertSubject(document);
-      } catch(e) {}
+      } catch (e) {}
     }
 
     setState(() {

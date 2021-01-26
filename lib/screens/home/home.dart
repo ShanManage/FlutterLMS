@@ -1,6 +1,6 @@
 import 'package:LoginSample/models/User.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
-import 'package:LoginSample/screens/admin/adminScreean.dart';
+import 'package:LoginSample/screens/admin/AdminScreean.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/screens/subjects/SubjectListScreen.dart';
 import 'package:LoginSample/services/auth.dart';

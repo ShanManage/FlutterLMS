@@ -33,7 +33,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
   Widget build(BuildContext context) {
     student.registerGrade = _grades.first.value;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 120.0, horizontal: 30.0),
+      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
       child: Form(
         key: _formKey,
         child: Column(

@@ -24,7 +24,7 @@ class AuthService {
       User user = result.user;
       return _userFromFireBaseUser(user);
     } on FirebaseAuthException catch (e) {
-      print("INVALID USER CREDENTIALS ");
+      print("INVALID USER CREDENTIALS : " + e.toString());
     }
   }
 
