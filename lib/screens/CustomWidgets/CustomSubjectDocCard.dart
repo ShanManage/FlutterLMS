@@ -2,6 +2,7 @@ import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomSubjectDocCard extends StatelessWidget {
   String title;
   String imagePath;

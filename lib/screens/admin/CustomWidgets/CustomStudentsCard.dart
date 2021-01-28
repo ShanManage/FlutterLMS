@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class CustomStudentsCard extends StatefulWidget {
   String title;
   final VoidCallback callback;

@@ -29,7 +29,6 @@ class _SubjectTabviewScreenState extends State<SubjectTabviewScreen>
       child: Column(
         children: [
           Container(
-            color: Colors.black12,
             height: blockHeight * 6,
             width: double.infinity,
             child: TabBar(
