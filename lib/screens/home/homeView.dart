@@ -1,7 +1,7 @@
 import 'package:LoginSample/models/User.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/SubjectList/SubjectListScreenView.dart';
-import 'package:LoginSample/screens/admin/AdminScreean.dart';
+import 'package:LoginSample/screens/admin/AdminView.dart';
 import 'package:LoginSample/screens/home/homeViewModel.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
