@@ -2,11 +2,11 @@ import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
-import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PDFViewScreen extends StatefulWidget {
   UploadDocument ud;
   PDFViewScreen({@required this.ud});
@@ -17,8 +17,6 @@ class PDFViewScreen extends StatefulWidget {
 class _PDFViewScreenState extends State<PDFViewScreen> {
   double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;
-
-  final AuthService _auth = AuthService();
 
   int page = 0, total = 0;
 

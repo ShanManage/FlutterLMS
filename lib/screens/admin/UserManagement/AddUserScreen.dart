@@ -15,11 +15,12 @@ class _AddUserScreenState extends State<AddUserScreen> {
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
 
+  RegisterStudent student = new RegisterStudent();
   final AuthService _auth = AuthService();
+
   final _formKey = GlobalKey<FormState>();
   final userNameController = TextEditingController();
   final passController = TextEditingController();
-  RegisterStudent student = new RegisterStudent();
 
   onClickAddUser() async {
     if (_formKey.currentState.validate()) {
@@ -33,7 +34,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
   Widget build(BuildContext context) {
     student.registerGrade = _grades.first.value;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 120.0, horizontal: 30.0),
+      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
       child: Form(
         key: _formKey,
         child: Column(

@@ -1,29 +1,29 @@
 import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomText.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
-import 'package:chewie_audio/chewie_audio.dart';
+import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-class AudioViewScreen extends StatefulWidget {
+// ignore: must_be_immutable
+class VideoViewScreen extends StatefulWidget {
   UploadDocument ud;
-
-  AudioViewScreen({@required this.ud});
+  VideoViewScreen({@required this.ud});
 
   @override
   State<StatefulWidget> createState() {
-    return _AudioViewScreen();
+    return _VideoViewScreen();
   }
 }
 
-class _AudioViewScreen extends State<AudioViewScreen> {
-  double blockHeight = SizeConfig.safeBlockVertical;
+class _VideoViewScreen extends State<VideoViewScreen> {
   double blockWidth = SizeConfig.safeBlockHorizontal;
+  double blockHeight = SizeConfig.safeBlockVertical;
 
   VideoPlayerController _videoPlayerController1;
-  ChewieAudioController _chewieAudioController;
+  ChewieController _chewieController;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
   @override
   void dispose() {
     _videoPlayerController1.dispose();
-    _chewieAudioController.dispose();
+    _chewieController.dispose();
     super.dispose();
   }
 
@@ -42,8 +42,18 @@ class _AudioViewScreen extends State<AudioViewScreen> {
     _videoPlayerController1 =
         VideoPlayerController.network(this.widget.ud.docURL.toString());
     await _videoPlayerController1.initialize();
-    _chewieAudioController = ChewieAudioController(
+    _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController1,
+      materialProgressColors: ChewieProgressColors(
+        playedColor: Colors.red,
+        handleColor: Colors.blue,
+        backgroundColor: Colors.grey,
+        bufferedColor: Colors.lightGreen,
+      ),
+      placeholder: Container(
+        color: Colors.grey,
+      ),
+      autoInitialize: true,
     );
     setState(() {});
   }
@@ -85,7 +95,7 @@ class _AudioViewScreen extends State<AudioViewScreen> {
                       },
                     ),
                     SizedBox(width: blockWidth * 5),
-                    Expanded(
+                    Container(
                       child: CustomText(
                         text: this.widget.ud.title.toString(),
                         color: Colors.black,
@@ -96,37 +106,17 @@ class _AudioViewScreen extends State<AudioViewScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: blockHeight * 5),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: blockWidth * 5),
-                height: blockHeight * 40,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: (this.widget.ud.thumbnailURL != null)
-                        ? NetworkImage(this.widget.ud.thumbnailURL.toString())
-                        : AssetImage("assets/audioCover.png"),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 30,
-                      spreadRadius: 2,
-                    )
-                  ],
-                ),
-              ),
               Expanded(
                 child: Center(
-                  child: _chewieAudioController != null &&
-                          _chewieAudioController
+                  child: _chewieController != null &&
+                          _chewieController
                               .videoPlayerController.value.initialized
-                      ? ChewieAudio(
-                          controller: _chewieAudioController,
+                      ? Chewie(
+                          controller: _chewieController,
                         )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CircularProgressIndicator(),
                             SizedBox(height: 20),

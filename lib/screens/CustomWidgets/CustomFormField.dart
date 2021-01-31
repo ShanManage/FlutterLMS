@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomFormField extends StatefulWidget {
   String hintText;
   bool isPass;
@@ -64,7 +65,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
                   icon: Icon(
                     (isHide == true) ? Icons.visibility : Icons.visibility_off,
                   ),
-                  onPressed: () { 
+                  onPressed: () {
                     setState(() {
                       isHide = !isHide;
                     });

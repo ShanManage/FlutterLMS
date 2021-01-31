@@ -1,8 +1,7 @@
-import 'package:LoginSample/screens/CustomWidgets/CustomAppbar.dart';
-import 'package:LoginSample/screens/admin/SubjectManagement/AddDocumentScreen.dart';
-import 'package:LoginSample/screens/admin/UserManagement/AddUserScreen.dart';
-import 'package:LoginSample/screens/admin/UserManagement/gradeListScreen.dart';
-import 'package:LoginSample/screens/admin/SubjectManagement/addSubjectScreen.dart';
+import 'package:LoginSample/screens/admin/AdminHome/AdminHomeScreen.dart';
+import 'package:LoginSample/screens/admin/CustomWidgets/CustomAdminAppbar.dart';
+import 'package:LoginSample/screens/admin/SubjectManagement/SubjectTabviewScreen.dart';
+import 'package:LoginSample/screens/admin/UserManagement/StudentTabviewScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +19,11 @@ class _AdminScreenState extends State<AdminScreen>
   final AuthService _auth = AuthService();
 
   int _currentIndex = 0;
+
   final List<Widget> _children = [
-    AddUserScreen(),
-    AddDocumentScreen(),
-    GradeListScreen(),
-    AddSubjectScreen(),
+    AdminHomeScreen(),
+    StudentTabviewSCreen(),
+    SubjectTabviewScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -37,16 +36,13 @@ class _AdminScreenState extends State<AdminScreen>
     String title;
     switch (index) {
       case 0:
-        title = "Users";
+        title = "Home";
         break;
       case 1:
-        title = "Subjects";
+        title = "Users";
         break;
       case 2:
-        title = "All";
-        break;
-      case 3:
-        title = "Add Subject";
+        title = "Subjects";
         break;
     }
     return title;
@@ -59,40 +55,33 @@ class _AdminScreenState extends State<AdminScreen>
         backgroundColor: Colors.blueGrey[50],
         body: Column(
           children: [
-            CustomAppbar(
+            CustomAdminAppbar(
               title: getAppbarTitle(_currentIndex),
               callbackTail: () async {
                 await _auth.signOut();
               },
-              callbackHead: null,
             ),
             Container(
-              height: blockHeight * 72.5,
+              height: blockHeight * 82.5,
               child: _children[_currentIndex],
             ),
             Container(
-              color: Colors.black,
               height: blockHeight * 7.5,
               child: BottomNavigationBar(
                 onTap: onTabTapped,
-                backgroundColor: Colors.black,
                 selectedItemColor: Colors.deepPurple[600],
                 items: [
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.person_add),
+                    icon: Icon(Icons.home),
+                    label: "Home",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person),
                     label: "Students",
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.note_add),
+                    icon: Icon(Icons.note),
                     label: "Subjects",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person_search),
-                    label: "All",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.auto_stories),
-                    label: "Add subject",
                   ),
                 ],
               ),

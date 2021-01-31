@@ -1,6 +1,7 @@
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
   double width, height, fontSize;
   String title;

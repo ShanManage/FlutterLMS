@@ -1,6 +1,7 @@
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomLoading extends StatelessWidget {
   double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;

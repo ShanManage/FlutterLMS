@@ -2,6 +2,7 @@ import 'package:LoginSample/models/RegisterStudent.dart';
 import 'package:LoginSample/models/UploadDocument.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomDropDownList extends StatefulWidget {
   List<DropdownMenuItem<String>> list;
   RegisterStudent rs;

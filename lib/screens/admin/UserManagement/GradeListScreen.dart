@@ -1,14 +1,14 @@
 import 'package:LoginSample/screens/admin/CustomWidgets/CustomGradeCard.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomNotificationCard.dart';
-import 'package:LoginSample/screens/admin/UserManagement/studentsListScreen.dart';
+import 'package:LoginSample/screens/admin/UserManagement/StudentsListScreen.dart';
 import 'package:LoginSample/screens/shared/sizeConfig.dart';
 import 'package:LoginSample/services/databaseService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// pake wedane wenne hutta
+// ignore: must_be_immutable
 class GradeListScreen extends StatelessWidget {
   double blockHeight = SizeConfig.safeBlockVertical;
   double blockWidth = SizeConfig.safeBlockHorizontal;
