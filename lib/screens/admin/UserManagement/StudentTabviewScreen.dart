@@ -40,11 +40,11 @@ class _StudentTabviewSCreenState extends State<StudentTabviewSCreen>
               isScrollable: true,
               indicatorSize: TabBarIndicatorSize.label,
               labelPadding:
-                  EdgeInsets.symmetric(horizontal: blockHeight * 8.75),
+                  EdgeInsets.symmetric(horizontal: blockHeight * 7),
               tabs: [
                 Tab(
                   child: CustomText(
-                    text: "User List",
+                    text: "Students List",
                     size: blockWidth * 4,
                     weight: FontWeight.w400,
                     color: Colors.black,
@@ -52,7 +52,7 @@ class _StudentTabviewSCreenState extends State<StudentTabviewSCreen>
                 ),
                 Tab(
                   child: CustomText(
-                    text: "Add User",
+                    text: "Add Students",
                     size: blockWidth * 4,
                     weight: FontWeight.w400,
                     color: Colors.black,

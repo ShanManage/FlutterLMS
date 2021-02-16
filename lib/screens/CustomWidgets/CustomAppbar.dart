@@ -8,13 +8,18 @@ class CustomAppbar extends StatelessWidget {
   String title;
   VoidCallback callbackHead, callbackTail;
   CustomAppbar({
+    @required this.callbackTail,
     @required this.title,
     this.callbackHead,
-    @required this.callbackTail,
   });
 
   double blockWidth = SizeConfig.safeBlockHorizontal;
   double blockHeight = SizeConfig.safeBlockVertical;
+
+  List<DropdownChoices> dropdownChoices = <DropdownChoices>[
+    DropdownChoices(title: 'Logout', icon: Icons.directions_bike),
+    DropdownChoices(title: 'change password', icon: Icons.directions_car),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +62,24 @@ class CustomAppbar extends StatelessWidget {
                         width: blockWidth * 7,
                       ),
                 (callbackTail != null)
-                    ? CustomIconButton(
-                        icon: Icons.more_vert,
-                        callback: () {
-                          callbackTail();
+                    ? PopupMenuButton<DropdownChoices>(
+                        onSelected: null,
+                        elevation: 6,
+                        itemBuilder: (BuildContext context) {
+                          return dropdownChoices.map((DropdownChoices choice) {
+                            return PopupMenuItem<DropdownChoices>(
+                              value: choice,
+                              child: Text(choice.title),
+                            );
+                          }).toList();
                         },
                       )
+                    // CustomIconButton(
+                    //     icon: Icons.more_vert,
+                    //     callback: () {
+                    //       callbackTail();
+                    //     },
+                    //   )
                     : Container(
                         width: blockWidth * 7,
                       ),
@@ -79,4 +96,11 @@ class CustomAppbar extends StatelessWidget {
       ),
     );
   }
+}
+
+class DropdownChoices {
+  const DropdownChoices({this.title, this.icon});
+
+  final String title;
+  final IconData icon;
 }

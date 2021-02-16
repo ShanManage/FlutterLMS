@@ -46,8 +46,8 @@ class AdminScreen extends StatelessWidget {
                     label: "Students",
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.note),
-                    label: "Subjects",
+                    icon: Icon(Icons.add),
+                    label: "Add",
                   ),
                 ],
               ),
