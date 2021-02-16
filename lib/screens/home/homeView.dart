@@ -1,5 +1,6 @@
 import 'package:LoginSample/models/User.dart';
 import 'package:LoginSample/screens/CustomWidgets/CustomLoading.dart';
+import 'package:LoginSample/screens/DisableNotification/disableNotification.dart';
 import 'package:LoginSample/screens/SubjectList/SubjectListScreenView.dart';
 import 'package:LoginSample/screens/admin/AdminView.dart';
 import 'package:LoginSample/screens/home/homeViewModel.dart';
@@ -30,15 +31,18 @@ class Home extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData && snapshot.data.exists) {
                     this.user.grade = snapshot.data["grade"];
+                    this.user.isEnable = snapshot.data["isEnable"];
                     return Column(
                       children: [
                         Container(
                           width: double.infinity,
                           height: blockHeight * 100,
                           child: Container(
-                            child: (this.user.grade == 0)
-                                ? AdminScreen()
-                                : SubjectListScreen(grade: this.user.grade),
+                            child: (this.user.isEnable)
+                                ? (this.user.grade == 0)
+                                    ? AdminScreen()
+                                    : SubjectListScreen(grade: this.user.grade)
+                                : DisableNotification(),
                           ),
                         ),
                       ],
